@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babajide Owoyele - Design Researcher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">Babajide Owoyele</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-600 hover:text-gray-800">About</a>
+                <a href="#research" class="text-gray-600 hover:text-gray-800">Research</a>
+                <a href="#publications" class="text-gray-600 hover:text-gray-800">Publications</a>
+                <a href="#projects" class="text-gray-600 hover:text-gray-800">Projects</a>
+                <a href="#contact" class="text-gray-600 hover:text-gray-800">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-200">About</a>
+            <a href="#research" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-200">Research</a>
+            <a href="#publications" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-200">Publications</a>
+            <a href="#projects" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-200">Projects</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-200">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <!-- About Section -->
+        <section id="about" class="section container mx-auto px-6 py-20 text-center">
+            <img class="w-48 h-48 rounded-full mx-auto mb-8" src="https://datanatives.io/wp-content/uploads/2019/11/Babajide-Owoyele-280x280.jpg" alt="Babajide Owoyele">
+            <h1 class="text-4xl font-bold mb-4">Babajide Owoyele</h1>
+            <p class="text-xl text-gray-600 mb-8">Design Researcher, Creative Leader, and Digital Entrepreneur</p>
+            <p class="max-w-3xl mx-auto text-lg">
+                Design researcher focused on digital entrepreneurship and creative collaboration. I am a Research Associate and PhD candidate at the Hasso Plattner Institute, exploring the intersection of design science, data, and societal transitions. My background includes a B.Sc. in Electrical Engineering, an M.Sc. in Global Production Engineering, and a certification in Climate Knowledge and Systemic Innovation.
+            </p>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research" class="section bg-white py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Research Interests</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Design Science Research</h3>
+                        <p>Creating innovative artifacts for real-world problems.</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Social Network Analysis</h3>
+                        <p>Analyzing social structures and their impact on collaboration.</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Natural Language Processing</h3>
+                        <p>Using computational methods to extract insights from text.</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Digital Entrepreneurship</h3>
+                        <p>How digital tech creates and scales new business models.</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Creative Leadership</h3>
+                        <p>Fostering creativity and innovation within organizations.</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Sustainability Transitions</h3>
+                        <p>Using design and data to accelerate societal sustainability shifts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="section py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Selected Publications</h2>
+                <div class="space-y-8 max-w-4xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold">MaskAnyone Toolkit</h3>
+                        <p class="text-gray-600">Strategies for minimizing privacy risks and maximizing utility in audio-visual data.</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Read More</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold">Multimodal Mapping of Structure and Temporality of Institutional Logics in Multi-Actor Constellations</h3>
+                        <p class="text-gray-600">Developing a proto-ontology for socio-institutional analysis (SIA) in sustainability transitions.</p>
+                         <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Read More</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold">An Open-Source Standardized Pipeline for Equitable Observations of Interactive Behavioral Dynamics</h3>
+                        <p class="text-gray-600">Theory-driven Measurement, Analysis, and Masking.</p>
+                         <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects" class="section bg-white py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">MaskAnyone Toolkit</h3>
+                            <p class="text-gray-700 mb-4">A toolkit for researchers to de-identify individuals in video and audio, balancing open science with personal data protection.</p>
+                            <a href="#" class="text-blue-600 font-semibold hover:underline">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">EnvisionBOX</h3>
+                            <p class="text-gray-700 mb-4">A community platform for analyzing multimodal data streams, increasing research transparency and accessibility.</p>
+                            <a href="#" class="text-blue-600 font-semibold hover:underline">Visit EnvisionBOX</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
+                <p class="text-lg mb-8">Open to discussing new research, projects, and collaborations. <br> Connect with me below.</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="mailto:babajide.owoyele@hpi.de" class="text-blue-600 hover:underline">Email</a>
+                    <a href="https://www.linkedin.com/in/babajide-owoyele-a85b4257/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">LinkedIn</a>
+                    <a href="https://scholar.google.com/citations?user=owcx4G0AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Google Scholar</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-6">
+        <div class="container mx-auto px-6 text-center text-gray-600">
+            <p>&copy; 2025 Babajide Owoyele. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // The mobile menu link clicks should also close the menu
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
