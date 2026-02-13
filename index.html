@@ -1,726 +1,938 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Babajide Alamu Owoyele — Postdoctoral researcher in multimodal analytics, design science, and sustainability transitions at Radboud University CLS and Hasso Plattner Institute.">
+    <meta name="theme-color" content="#161616">
     <title>Babajide Alamu Owoyele</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['IBM Plex Sans', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-        .section {
-            scroll-margin-top: 80px;
-        }
-        .accent-line {
-            height: 2px;
-            background: linear-gradient(90deg, black 0%, transparent 100%);
-        }
-        
-        /* Floating Graph Elements */
-        .graph-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .node {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: black;
-            border-radius: 50%;
-            opacity: 0.08;
-            animation: float 25s infinite ease-in-out;
-        }
-        
-        .node.large {
-            width: 10px;
-            height: 10px;
-            opacity: 0.12;
-        }
-        
-        .connection {
-            position: absolute;
-            height: 1px;
-            background: black;
-            opacity: 0.04;
-            transform-origin: left center;
-            animation: pulse 20s infinite ease-in-out;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            25% { transform: translateY(-15px) translateX(8px); }
-            50% { transform: translateY(-8px) translateX(-4px); }
-            75% { transform: translateY(-20px) translateX(12px); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.02; }
-            50% { opacity: 0.06; }
-        }
-        
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .project-highlight {
-            border: 3px solid black;
-            background: white;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-        
-        .project-highlight:hover {
-            transform: translateY(-2px);
-        }
-        
-        .project-highlight::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: black;
-            z-index: -1;
-            transform: translate(6px, 6px);
+        /* ── Carbon Design Tokens ── */
+        :root {
+            --cds-background: #ffffff;
+            --cds-background-hover: #e8e8e8;
+            --cds-layer-01: #f4f4f4;
+            --cds-layer-02: #e0e0e0;
+            --cds-text-primary: #161616;
+            --cds-text-secondary: #525252;
+            --cds-text-on-color: #ffffff;
+            --cds-border-subtle: #e0e0e0;
+            --cds-border-strong: #8d8d8d;
+            --cds-link-primary: #0f62fe;
+            --cds-link-primary-hover: #0043ce;
+            --cds-tag-bg-blue: #d0e2ff;
+            --cds-tag-text-blue: #0043ce;
+            --cds-tag-bg-teal: #9ef0f0;
+            --cds-tag-text-teal: #004144;
+            --cds-tag-bg-purple: #e8daff;
+            --cds-tag-text-purple: #491d8b;
+            --cds-tag-bg-gray: #e0e0e0;
+            --cds-tag-text-gray: #393939;
+            --cds-focus: #0f62fe;
+            --cds-header-bg: #161616;
+            --cds-header-text: #c6c6c6;
+            --cds-header-text-active: #ffffff;
+            --cds-footer-bg: #262626;
+            --cds-inverse-text: #ffffff;
+            --cds-tile-hover: #e8e8e8;
+            --cds-icon-primary: #161616;
+            --cds-icon-secondary: #525252;
         }
 
-        .icon-box {
-            width: 40px;
-            height: 40px;
-            background: black;
-            color: white;
+        [data-theme="dark"] {
+            --cds-background: #161616;
+            --cds-background-hover: #353535;
+            --cds-layer-01: #262626;
+            --cds-layer-02: #393939;
+            --cds-text-primary: #f4f4f4;
+            --cds-text-secondary: #c6c6c6;
+            --cds-text-on-color: #ffffff;
+            --cds-border-subtle: #393939;
+            --cds-border-strong: #6f6f6f;
+            --cds-link-primary: #78a9ff;
+            --cds-link-primary-hover: #a6c8ff;
+            --cds-tag-bg-blue: #0043ce;
+            --cds-tag-text-blue: #d0e2ff;
+            --cds-tag-bg-teal: #004144;
+            --cds-tag-text-teal: #9ef0f0;
+            --cds-tag-bg-purple: #491d8b;
+            --cds-tag-text-purple: #e8daff;
+            --cds-tag-bg-gray: #393939;
+            --cds-tag-text-gray: #c6c6c6;
+            --cds-focus: #78a9ff;
+            --cds-header-bg: #262626;
+            --cds-header-text: #c6c6c6;
+            --cds-header-text-active: #ffffff;
+            --cds-footer-bg: #161616;
+            --cds-inverse-text: #161616;
+            --cds-tile-hover: #353535;
+            --cds-icon-primary: #f4f4f4;
+            --cds-icon-secondary: #c6c6c6;
+        }
+
+        /* ── Base ── */
+        body {
+            background: var(--cds-background);
+            color: var(--cds-text-primary);
+            transition: background-color 200ms, color 200ms;
+        }
+
+        .section { scroll-margin-top: 48px; }
+
+        /* ── Focus ring ── */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--cds-focus);
+            outline-offset: 2px;
+        }
+
+        /* ── Carbon Link ── */
+        .cds-link {
+            color: var(--cds-link-primary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .cds-link:hover { color: var(--cds-link-primary-hover); }
+
+        /* ── Carbon Tags ── */
+        .cds-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 0.5rem;
+            height: 1.5rem;
+            font-size: 0.75rem;
+            font-family: 'IBM Plex Mono', monospace;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .tag-blue { background: var(--cds-tag-bg-blue); color: var(--cds-tag-text-blue); }
+        .tag-teal { background: var(--cds-tag-bg-teal); color: var(--cds-tag-text-teal); }
+        .tag-purple { background: var(--cds-tag-bg-purple); color: var(--cds-tag-text-purple); }
+        .tag-gray { background: var(--cds-tag-bg-gray); color: var(--cds-tag-text-gray); }
+
+        /* ── Carbon Tile ── */
+        .cds-tile {
+            background: var(--cds-background);
+            border: 1px solid var(--cds-border-subtle);
+            padding: 1.5rem;
+            transition: background-color 150ms;
+        }
+        .cds-tile:hover { background: var(--cds-tile-hover); }
+
+        /* ── Carbon Featured Tile ── */
+        .cds-tile-featured {
+            background: var(--cds-layer-01);
+            border-left: 3px solid var(--cds-link-primary);
+            padding: 2rem;
+        }
+
+        /* ── Layers & utilities ── */
+        .bg-layer-01 { background: var(--cds-layer-01); }
+        .bg-surface { background: var(--cds-background); }
+        .text-primary { color: var(--cds-text-primary); }
+        .text-secondary { color: var(--cds-text-secondary); }
+        .border-subtle { border-color: var(--cds-border-subtle); }
+        .border-token { border: 1px solid var(--cds-border-subtle); }
+        .grid-gap-border { background: var(--cds-border-subtle); }
+        .border-top-subtle { border-top: 1px solid var(--cds-border-subtle); }
+        .cds-footer { background: var(--cds-footer-bg); }
+        .footer-text { color: var(--cds-header-text); }
+
+        /* ── Header ── */
+        .cds-header {
+            background: var(--cds-header-bg);
+            height: 48px;
+        }
+        .cds-header a {
+            color: var(--cds-header-text);
+            transition: color 150ms, background-color 150ms;
+        }
+        .cds-header a:hover, .cds-header button:hover {
+            color: var(--cds-header-text-active);
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ── Carbon Productive Headings ── */
+        .heading-07 { font-size: 3.375rem; line-height: 1.07; font-weight: 300; }
+        .heading-05 { font-size: 2rem; line-height: 1.25; font-weight: 400; }
+        .heading-04 { font-size: 1.75rem; line-height: 1.29; font-weight: 400; }
+        .heading-03 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
+        .heading-02 { font-size: 1rem; line-height: 1.375; font-weight: 600; }
+        .body-02 { font-size: 1rem; line-height: 1.5; }
+        .body-01 { font-size: 0.875rem; line-height: 1.43; }
+        .label-01 {
+            font-size: 0.75rem;
+            line-height: 1.34;
+            letter-spacing: 0.32px;
+            font-family: 'IBM Plex Mono', monospace;
+            text-transform: uppercase;
+            color: var(--cds-text-secondary);
+        }
+
+        /* ── Publication row ── */
+        .pub-row {
+            border-bottom: 1px solid var(--cds-border-subtle);
+            padding: 1.25rem 0;
+        }
+        .pub-row:last-child { border-bottom: none; }
+
+        /* ── SVG icon fill ── */
+        .icon { fill: currentColor; flex-shrink: 0; }
+
+        /* ── Pictogram (decorative tile icon) ── */
+        .pictogram {
+            width: 32px;
+            height: 32px;
+            fill: var(--cds-icon-secondary);
+            flex-shrink: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* ── Theme toggle ── */
+        .theme-toggle {
+            color: var(--cds-header-text);
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            margin-right: 1rem;
-            flex-shrink: 0;
+        }
+        .theme-toggle:hover {
+            color: var(--cds-header-text-active);
+            background: rgba(255,255,255,0.16);
+        }
+
+        /* ── Mobile menu ── */
+        .mobile-nav {
+            background: var(--cds-header-bg);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .mobile-nav a {
+            color: var(--cds-header-text);
+            display: block;
+            padding: 0.875rem 1rem;
+        }
+        .mobile-nav a:hover {
+            color: var(--cds-header-text-active);
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ── SVG sprite container ── */
+        .svg-sprite {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .heading-07 { font-size: 2.25rem; line-height: 1.15; }
         }
     </style>
 </head>
-<body class="bg-white text-black">
-    <!-- Floating Graph Background -->
-    <div class="graph-container" id="graphContainer"></div>
-    
-    <div class="content-wrapper">
+<body class="font-sans antialiased">
 
-    <!-- Header -->
-    <header class="bg-white border-b border-black fixed w-full z-10">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-semibold">BABAJIDE ALAMU OWOYELE</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="hover:bg-black hover:text-white px-3 py-1 transition-all duration-200">About</a>
-                <a href="#research" class="hover:bg-black hover:text-white px-3 py-1 transition-all duration-200">Research</a>
-                <a href="#work" class="hover:bg-black hover:text-white px-3 py-1 transition-all duration-200">Work</a>
-                <a href="#contact" class="hover:bg-black hover:text-white px-3 py-1 transition-all duration-200">Contact</a>
-            </div>
-            <div class="md:hidden">
-                <button id="menu-btn" class="hover:bg-black hover:text-white p-2 transition-all duration-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
+    <!-- ── SVG Icon Sprite ── -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite" aria-hidden="true">
+        <!-- UI Icons -->
+        <symbol id="icon-menu" viewBox="0 0 32 32">
+            <rect x="4" y="6" width="24" height="2"/>
+            <rect x="4" y="15" width="24" height="2"/>
+            <rect x="4" y="24" width="24" height="2"/>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 32 32">
+            <polygon points="24,9.4 22.6,8 16,14.6 9.4,8 8,9.4 14.6,16 8,22.6 9.4,24 16,17.4 22.6,24 24,22.6 17.4,16"/>
+        </symbol>
+        <symbol id="icon-launch" viewBox="0 0 32 32">
+            <path d="M26,28H6a2,2,0,0,1-2-2V6A2,2,0,0,1,6,4H16V6H6V26H26V16h2V26A2,2,0,0,1,26,28Z"/>
+            <polygon points="20,2 20,4 26.59,4 18,12.59 19.41,14 28,5.41 28,12 30,12 30,2"/>
+        </symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 32 32">
+            <polygon points="18,6 16.57,7.393 24.15,15 4,15 4,17 24.15,17 16.57,24.573 18,26 28,16"/>
+        </symbol>
+        <symbol id="icon-email" viewBox="0 0 32 32">
+            <path d="M28,6H4A2,2,0,0,0,2,8V24a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V8A2,2,0,0,0,28,6ZM25.8,8,16,14.78,6.2,8ZM4,24V8.91l11.43,7.91a1,1,0,0,0,1.14,0L28,8.91V24Z"/>
+        </symbol>
+
+        <!-- Social logos -->
+        <symbol id="icon-linkedin" viewBox="0 0 32 32">
+            <path d="M26.2,4H5.8C4.8,4,4,4.8,4,5.7V26.2c0,1,0.8,1.7,1.8,1.7h20.4c1,0,1.8-0.8,1.8-1.7V5.7C28,4.8,27.2,4,26.2,4z M11.1,24.4H7.6V13h3.5V24.4z M9.4,11.6c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2c1.1,0,2,0.9,2,2C11.4,10.7,10.5,11.6,9.4,11.6z M24.5,24.4H21V18.4c0-1.4,0-3.3-2-3.3s-2.3,1.5-2.3,3.2v6.1h-3.5V13h3.4v1.6c0.5-0.9,1.6-1.8,3.3-1.8c3.6,0,4.2,2.3,4.2,5.4v6.3H24.5z"/>
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 32 32">
+            <path fill-rule="evenodd" d="M16,2a14,14,0,0,0-4.43,27.28c.7.13,1-.3,1-.67s0-1.21,0-2.38c-3.89.84-4.71-1.88-4.71-1.88A3.71,3.71,0,0,0,6.24,22.3c-1.27-.86.1-.85.1-.85A2.94,2.94,0,0,1,8.48,22.9a3,3,0,0,0,4.08,1.16,2.93,2.93,0,0,1,.88-1.87c-3.1-.36-6.37-1.56-6.37-6.93a5.36,5.36,0,0,1,1.44-3.76,5,5,0,0,1,.14-3.7s1.17-.38,3.85,1.43a13.3,13.3,0,0,1,7,0c2.67-1.81,3.84-1.43,3.84-1.43a5,5,0,0,1,.14,3.7,5.34,5.34,0,0,1,1.44,3.76c0,5.38-3.27,6.56-6.39,6.91a3.33,3.33,0,0,1,.95,2.59c0,1.87,0,3.38,0,3.84s.25.81,1,.67A14,14,0,0,0,16,2Z"/>
+        </symbol>
+
+        <!-- Theme toggle -->
+        <symbol id="icon-sun" viewBox="0 0 32 32">
+            <path d="M16,12a4,4,0,1,1-4,4,4,4,0,0,1,4-4m0-2a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z"/>
+            <rect x="6.22" y="5.64" width="1.86" height="4.22" transform="translate(-3.6 7.15) rotate(-45)"/>
+            <rect x="2" y="15" width="4" height="2"/>
+            <rect x="6.22" y="22.14" width="1.86" height="4.22" transform="translate(-14.39 10.98) rotate(-45)"/>
+            <rect x="15" y="26" width="2" height="4"/>
+            <rect x="23.93" y="22.14" width="1.86" height="4.22" transform="translate(-10.57 24.86) rotate(-45)"/>
+            <rect x="26" y="15" width="4" height="2"/>
+            <rect x="23.93" y="5.64" width="1.86" height="4.22" transform="translate(3.22 21.03) rotate(-45)"/>
+            <rect x="15" y="2" width="2" height="4"/>
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 32 32">
+            <path d="M13.5,6.21A1,1,0,0,0,12.28,5a14.38,14.38,0,0,0-1.51.88A14,14,0,0,0,8,28.24a14.19,14.19,0,0,0,1.67.98A1,1,0,0,0,11.12,28,10,10,0,0,1,13.5,6.21Z"/>
+        </symbol>
+
+        <!-- Pictogram: Eye/View (Multimodal Analytics) -->
+        <symbol id="picto-view" viewBox="0 0 32 32">
+            <path d="M30.94,15.66A16.69,16.69,0,0,0,16,6,16.69,16.69,0,0,0,1.06,15.66a1,1,0,0,0,0,.68A16.69,16.69,0,0,0,16,26,16.69,16.69,0,0,0,30.94,16.34,1,1,0,0,0,30.94,15.66ZM16,24c-5.3,0-10.9-3.93-12.93-8C5.1,11.93,10.7,8,16,8s10.9,3.93,12.93,8C26.9,20.07,21.3,24,16,24Z"/>
+            <circle cx="16" cy="16" r="4"/>
+        </symbol>
+
+        <!-- Pictogram: Tool (Design Science) -->
+        <symbol id="picto-tool" viewBox="0 0 32 32">
+            <path d="M29,10H28V7a1,1,0,0,0-1-1H5A1,1,0,0,0,4,7V25a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1V22h1a1,1,0,0,0,1-1V11A1,1,0,0,0,29,10ZM26,24H6V8H26v2H20a1,1,0,0,0-1,1v10a1,1,0,0,0,1,1h6Zm2-4H21V12h7Z"/>
+            <circle cx="24.5" cy="16" r="1.5"/>
+        </symbol>
+
+        <!-- Pictogram: Earth/Globe (Sustainability) -->
+        <symbol id="picto-earth" viewBox="0 0 32 32">
+            <path d="M16,2A14,14,0,1,0,30,16,14.016,14.016,0,0,0,16,2ZM4.02,16.394l3.388,3.388L10,22.374V26.1l1.96,1.96C6.597,26.693,4.115,21.946,4.02,16.394Zm23.58,6.76L24,19.554V16a1,1,0,0,0-1-1H15V13h3a1,1,0,0,0,1-1V8h1a1,1,0,0,0,1-1V4.87A12,12,0,0,1,27.6,23.154ZM13,4.14V7a1,1,0,0,0,1,1h3v2H13a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1h8v2.46l4,4v1.49a11.94,11.94,0,0,1-15.09,1.47l-.82-.82V20a1,1,0,0,0-.29-.71L5.41,15.9l-1.3-1.3A12,12,0,0,1,13,4.14Z"/>
+        </symbol>
+
+        <!-- Pictogram: Security/Shield (AI Ethics) -->
+        <symbol id="picto-shield" viewBox="0 0 32 32">
+            <path d="M16,30,4.21,27.06a1,1,0,0,1-.74-.79L2,16,3.47,5.74a1,1,0,0,1,.6-.74L16,2l11.93,3a1,1,0,0,1,.6.74L30,16l-1.47,10.27a1,1,0,0,1-.74.79ZM5.92,25.39,16,27.93l10.08-2.54L27.44,16,26.08,6.61,16,4.07,5.92,6.61,4.56,16Z"/>
+            <path d="M14.59,21.41l-4-4L12,16l2.59,2.59L21,12.17l1.41,1.42Z"/>
+        </symbol>
+
+        <!-- Pictogram: Group/People (Community) -->
+        <symbol id="picto-group" viewBox="0 0 32 32">
+            <path d="M16,14a4,4,0,1,1,4-4A4,4,0,0,1,16,14Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,16,8Z"/>
+            <path d="M24,14a3,3,0,1,1,3-3A3,3,0,0,1,24,14Zm0-4a1,1,0,1,0,1,1A1,1,0,0,0,24,10Z"/>
+            <path d="M8,14a3,3,0,1,1,3-3A3,3,0,0,1,8,14ZM8,10a1,1,0,1,0,1,1A1,1,0,0,0,8,10Z"/>
+            <path d="M26,24H24V22a2,2,0,0,0-2-2H20.58a5.76,5.76,0,0,1,.42,2v2h5ZM6,24V22a5.76,5.76,0,0,1,.42-2H4a2,2,0,0,0-2,2v2H6ZM20,24V22a4,4,0,0,0-4-4H16a4,4,0,0,0-4,4v2Z"/>
+        </symbol>
+
+        <!-- Pictogram: Network (Cartography) -->
+        <symbol id="picto-network" viewBox="0 0 32 32">
+            <circle cx="21" cy="7" r="2"/>
+            <circle cx="7" cy="16" r="2"/>
+            <circle cx="21" cy="25" r="2"/>
+            <path d="M22,27a4,4,0,1,1,2.85-1.15L17.59,18.6a4,4,0,0,1-3.18,0L7.15,25.85A4,4,0,0,1,4,27H4a4,4,0,1,1,2.85-1.15l7.26-7.26a4,4,0,0,1,0-5.18l-7.26-7.26A4,4,0,0,1,4,5H4A4,4,0,1,1,7.15,6.15l7.26,7.26a4,4,0,0,1,3.18,0l7.26-7.26A4,4,0,1,1,28,5a4,4,0,0,1-1.15,2.85L19.6,15.1a4,4,0,0,1,0,1.8l7.26,7.25A4,4,0,0,1,28,27,4,4,0,0,1,22,27Z"/>
+            <circle cx="16" cy="16" r="2"/>
+        </symbol>
+
+        <!-- Pictogram: Chip (SMASH) -->
+        <symbol id="picto-chip" viewBox="0 0 32 32">
+            <path d="M11,11V21H21V11Zm8,8H13V13h6Z"/>
+            <path d="M30,13V11H26V7a1,1,0,0,0-1-1H21V2H19V6H13V2H11V6H7A1,1,0,0,0,6,7v4H2v2H6v4H2v2H6v4a1,1,0,0,0,1,1h4v4h2V26h6v4h2V26h4a1,1,0,0,0,1-1V21h4V19H26V13ZM24,24H8V8H24Z"/>
+        </symbol>
+
+        <!-- Pictogram: Cube (EnvisionBOX) -->
+        <symbol id="picto-cube" viewBox="0 0 32 32">
+            <path d="M28,9,16,2,4,9V23l12,7,12-7ZM16,4.14,26,10,16,15.86,6,10ZM6,11.77l9,5.25V27.89L6,22.64Zm11,16.12V17l9-5.25V22.64Z"/>
+        </symbol>
+
+        <!-- Pictogram: Search (HGdetector) -->
+        <symbol id="picto-search" viewBox="0 0 32 32">
+            <path d="M30,28.59,22.45,21A11,11,0,1,0,21,22.45L28.59,30ZM5,14a9,9,0,1,1,9,9A9,9,0,0,1,5,14Z"/>
+        </symbol>
+
+        <!-- Pictogram: Face/User (MaskAnyone) -->
+        <symbol id="picto-user" viewBox="0 0 32 32">
+            <path d="M16,4a5,5,0,1,1-5,5,5,5,0,0,1,5-5m0-2a7,7,0,1,0,7,7A7,7,0,0,0,16,2Z"/>
+            <path d="M26,30H24V25a5,5,0,0,0-5-5H13a5,5,0,0,0-5,5v5H6V25a7,7,0,0,1,7-7h6a7,7,0,0,1,7,7Z"/>
+        </symbol>
+
+        <!-- Pictogram: GlobeAfrica (DNA project) -->
+        <symbol id="picto-africa" viewBox="0 0 32 32">
+            <path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/>
+            <path d="M16,8a8,8,0,1,0,8,8A8,8,0,0,0,16,8Zm0,14a6,6,0,1,1,6-6A6,6,0,0,1,16,22Z"/>
+        </symbol>
+
+        <!-- Pictogram: Document (Publications) -->
+        <symbol id="picto-document" viewBox="0 0 32 32">
+            <path d="M25.7,9.3l-7-7A.91.91,0,0,0,18,2H8A2,2,0,0,0,6,4V28a2,2,0,0,0,2,2H24a2,2,0,0,0,2-2V10A.91.91,0,0,0,25.7,9.3ZM18,4.4,23.6,10H18ZM24,28H8V4h8v6a2,2,0,0,0,2,2h6Z"/>
+            <rect x="10" y="22" width="12" height="2"/>
+            <rect x="10" y="16" width="12" height="2"/>
+        </symbol>
+
+        <!-- Education -->
+        <symbol id="icon-education" viewBox="0 0 32 32">
+            <polygon points="16 2 4 8 16 14 26 9.18 26 18 28 18 28 8.36 16 2"/>
+            <path d="M8,10.82V20l8,4,8-4V10.82L16,15Z"/>
+        </symbol>
+
+        <!-- Globe (for ResearchGate) -->
+        <symbol id="icon-globe" viewBox="0 0 32 32">
+            <path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/>
+            <path d="M16,6a9.94,9.94,0,0,0-4,19.22V22a1,1,0,0,1,.29-.71L16,17.59l3.71,3.7A1,1,0,0,1,20,22v3.22A9.94,9.94,0,0,0,16,6Zm2,17.59-2-2-2,2V23a10,10,0,0,0,4,0Z"/>
+        </symbol>
+    </svg>
+
+    <!-- ── Carbon UI Shell Header ── -->
+    <header class="cds-header fixed w-full z-50" role="banner">
+        <nav class="h-full flex items-center justify-between px-4 lg:px-8 max-w-screen-xl mx-auto" role="navigation" aria-label="Main navigation">
+            <a href="#" class="font-mono text-sm tracking-wide px-2 h-full flex items-center" aria-label="Home">
+                BABAJIDE OWOYELE
+            </a>
+            <div class="flex items-center h-full">
+                <div class="hidden md:flex items-center h-full">
+                    <a href="#about" class="text-sm px-4 h-full flex items-center">About</a>
+                    <a href="#research" class="text-sm px-4 h-full flex items-center">Research</a>
+                    <a href="#work" class="text-sm px-4 h-full flex items-center">Work</a>
+                    <a href="#publications" class="text-sm px-4 h-full flex items-center">Publications</a>
+                    <a href="#contact" class="text-sm px-4 h-full flex items-center">Contact</a>
+                </div>
+                <button
+                    class="theme-toggle"
+                    id="theme-toggle"
+                    aria-label="Toggle dark mode"
+                    type="button"
+                >
+                    <svg class="icon" width="20" height="20" id="theme-icon"><use href="#icon-sun"/></svg>
+                </button>
+                <button
+                    class="theme-toggle md:hidden"
+                    id="menu-btn"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                    type="button"
+                >
+                    <svg class="icon" width="20" height="20"><use href="#icon-menu"/></svg>
                 </button>
             </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden border-t border-black">
-            <a href="#about" class="block py-3 px-6 hover:bg-black hover:text-white transition-all duration-200">About</a>
-            <a href="#research" class="block py-3 px-6 hover:bg-black hover:text-white transition-all duration-200">Research</a>
-            <a href="#work" class="block py-3 px-6 hover:bg-black hover:text-white transition-all duration-200">Work</a>
-            <a href="#contact" class="block py-3 px-6 hover:bg-black hover:text-white transition-all duration-200">Contact</a>
+        <div id="mobile-menu" class="mobile-nav hidden md:hidden" role="menu" aria-label="Mobile navigation">
+            <a href="#about" role="menuitem">About</a>
+            <a href="#research" role="menuitem">Research</a>
+            <a href="#work" role="menuitem">Work</a>
+            <a href="#publications" role="menuitem">Publications</a>
+            <a href="#contact" role="menuitem">Contact</a>
         </div>
     </header>
 
-    <main class="pt-16">
-        <!-- Hero Section -->
-        <section id="about" class="section container mx-auto px-6 py-20">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="max-w-4xl">
-                    <h1 class="text-5xl md:text-7xl font-light mb-8 leading-none">
-                        BABAJIDE<br>
-                        <span class="font-semibold">OWOYELE</span>
-                    </h1>
-                    <div class="accent-line mb-8"></div>
-                    <p class="text-xl md:text-2xl font-light mb-12">
-                        Data-driven theory-guided researcher developing cartographic frameworks for mapping role constellations in sustainability transitions. 
-                        PhD candidate leveraging design science for multimodal data analysis across diverse data sources, including audio-visual recordings.
+    <main class="pt-12" role="main">
+
+        <!-- ── Hero / About ── -->
+        <section id="about" class="section py-16 md:py-24">
+            <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-8">
+                        <p class="label-01 mb-4">Postdoctoral Researcher</p>
+                        <h1 class="heading-07 mb-6">
+                            Babajide<br>
+                            <span class="font-semibold">Alamu Owoyele</span>
+                        </h1>
+                        <p class="body-02 text-secondary max-w-2xl mb-10">
+                            Data-driven, theory-guided researcher developing cartographic frameworks
+                            for mapping role constellations in sustainability transitions.
+                            Leveraging design science for multimodal data analysis across diverse sources,
+                            including gesture, speech, and audio-visual recordings.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div>
+                                <p class="label-01 mb-2">Current Position</p>
+                                <p class="body-02">Postdoctoral Researcher</p>
+                                <p class="body-01 text-secondary">Centre for Language Studies, Radboud University</p>
+                                <p class="body-01 text-secondary">PI: Mark Dingemanse</p>
+                            </div>
+                            <div>
+                                <p class="label-01 mb-2">Affiliate</p>
+                                <p class="body-02">Affiliate Researcher</p>
+                                <p class="body-01 text-secondary">AI &amp; Intelligent Systems, Hasso Plattner Institute</p>
+                                <p class="body-01 text-secondary">PI: Gerard de Melo</p>
+                            </div>
+                            <div>
+                                <p class="label-01 mb-2">Location</p>
+                                <p class="body-02">Nijmegen, Netherlands</p>
+                                <p class="body-01 text-secondary">Potsdam, Germany</p>
+                            </div>
+                            <div>
+                                <p class="label-01 mb-2">Research Focus</p>
+                                <p class="body-02">Multimodal Analytics</p>
+                                <p class="body-01 text-secondary">Design Science &middot; Sustainability Transitions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-4 flex justify-center lg:justify-end">
+                        <img src="Babajide.jpg"
+                             alt="Portrait of Babajide Alamu Owoyele"
+                             class="w-72 h-auto border-token"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Research ── -->
+        <section id="research" class="section bg-layer-01 py-16 md:py-24">
+            <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+                <p class="label-01 mb-2">Research Areas</p>
+                <h2 class="heading-05 mb-10">What I work on</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px grid-gap-border">
+                    <article class="cds-tile" role="article">
+                        <svg class="pictogram" aria-hidden="true"><use href="#picto-view"/></svg>
+                        <h3 class="heading-03 mb-3">Multimodal Analytics</h3>
+                        <p class="body-01 text-secondary">Computational frameworks for gesture, speech, and visual data in collaborative settings. Co-speech gesture detection and kinematic analysis from video.</p>
+                    </article>
+                    <article class="cds-tile" role="article">
+                        <svg class="pictogram" aria-hidden="true"><use href="#picto-tool"/></svg>
+                        <h3 class="heading-03 mb-3">Design Science Research</h3>
+                        <p class="body-01 text-secondary">Creating innovative artifacts that bridge academic theory with practical solutions for complex social systems and sustainability challenges.</p>
+                    </article>
+                    <article class="cds-tile" role="article">
+                        <svg class="pictogram" aria-hidden="true"><use href="#picto-earth"/></svg>
+                        <h3 class="heading-03 mb-3">Sustainability Transitions</h3>
+                        <p class="body-01 text-secondary">Computational methods to understand how actors and concepts enact social systems that accelerate or decelerate sustainability at scale.</p>
+                    </article>
+                    <article class="cds-tile" role="article">
+                        <svg class="pictogram" aria-hidden="true"><use href="#picto-shield"/></svg>
+                        <h3 class="heading-03 mb-3">AI Ethics &amp; Privacy</h3>
+                        <p class="body-01 text-secondary">Privacy-preserving tools for research data, including face and voice masking strategies that balance open science with personal data protection.</p>
+                    </article>
+                    <article class="cds-tile" role="article">
+                        <svg class="pictogram" aria-hidden="true"><use href="#picto-group"/></svg>
+                        <h3 class="heading-03 mb-3">Community Building</h3>
+                        <p class="body-01 text-secondary">Leading collaborative platforms that democratize access to multimodal research tools and foster international scientific communities.</p>
+                    </article>
+                    <article class="cds-tile" role="article">
+                        <svg class="pictogram" aria-hidden="true"><use href="#picto-network"/></svg>
+                        <h3 class="heading-03 mb-3">Actor Role Cartography</h3>
+                        <p class="body-01 text-secondary">Mapping role plurality and interconnectedness in multi-actor constellations using network analysis and computational text methods.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Selected Work ── -->
+        <section id="work" class="section py-16 md:py-24">
+            <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+                <p class="label-01 mb-2">Selected Work</p>
+                <h2 class="heading-05 mb-10">Projects</h2>
+
+                <!-- Featured: SMASH -->
+                <article class="cds-tile-featured mb-8">
+                    <div class="flex items-start gap-4 mb-4">
+                        <svg class="pictogram mt-1" aria-hidden="true"><use href="#picto-chip"/></svg>
+                        <div class="flex-1">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                <h3 class="heading-04 font-semibold">SMASH</h3>
+                                <div class="flex gap-2 mt-2 md:mt-0">
+                                    <span class="cds-tag tag-blue">NWO Funded</span>
+                                    <span class="cds-tag tag-gray">2024&ndash;2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="heading-03 text-secondary mb-4">Synthesis and Multimodal Analytics System for Humanities</p>
+                    <p class="body-02 text-secondary mb-6">
+                        Fully open-source tool that analyzes non-verbal communication &mdash; body language,
+                        facial expressions, and speech patterns. Integrates privacy-preserving data archiving with
+                        behavioral analysis, making multimodal communication research accessible to non-programmers.
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                        <div class="flex items-start">
-                            <div class="icon-box">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-2">CURRENT</h3>
-                                <p>PhD Candidate<br>DRIFT, Erasmus University<br>AIIS, Hasso Plattner Institute</p>
-                            </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <p class="label-01 mb-2">Capabilities</p>
+                            <ul class="body-01 text-secondary space-y-1">
+                                <li>Hand gesture analysis &amp; diversity metrics</li>
+                                <li>Facial expression &amp; posture tracking</li>
+                                <li>Voice tone variation analysis</li>
+                                <li>Automatic speech transcription</li>
+                            </ul>
                         </div>
-                        <div class="flex items-start">
-                            <div class="icon-box">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-2">FOCUS</h3>
-                                <p>Design Science Research<br>Multimodal Ananlytics<br>Sustainability Transitions</p>
-                            </div>
+                        <div>
+                            <p class="label-01 mb-2">Impact</p>
+                            <ul class="body-01 text-secondary space-y-1">
+                                <li>Cross-cultural speaker databases</li>
+                                <li>Clinical research applications</li>
+                                <li>Social sciences &amp; humanities tool</li>
+                                <li>Privacy-first data archiving</li>
+                            </ul>
                         </div>
-                        <div class="flex items-start">
-                            <div class="icon-box">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-2">LOCATION</h3>
-                                <p>Rotterdam, Netherlands<br>Potsdam, Germany</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="icon-box">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-2">FUNDING</h3>
-                                <p>NWO Grant Recipient<br>International Collaboration<br>Open Science Advocate</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="cds-tag tag-blue">Multimodal AI</span>
+                        <span class="cds-tag tag-teal">Computer Vision</span>
+                        <span class="cds-tag tag-purple">NLP</span>
+                        <span class="cds-tag tag-gray">Privacy Tech</span>
+                        <span class="cds-tag tag-teal">Open Source</span>
+                    </div>
+                    <p class="body-01 text-secondary">
+                        Collaboration: Radboud University, Hasso Plattner Institute &middot;
+                        Co-investigators: Gerard de Melo, Wim Pouw
+                    </p>
+                </article>
+
+                <!-- Featured: EnvisionBOX -->
+                <article class="cds-tile-featured mb-12">
+                    <div class="flex items-start gap-4 mb-4">
+                        <svg class="pictogram mt-1" aria-hidden="true"><use href="#picto-cube"/></svg>
+                        <div class="flex-1">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                <h3 class="heading-04 font-semibold">EnvisionBOX</h3>
+                                <div class="flex gap-2 mt-2 md:mt-0">
+                                    <span class="cds-tag tag-blue">Core Team Lead</span>
+                                    <span class="cds-tag tag-gray">Ongoing</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex justify-center lg:justify-end">
-                    <div class="relative">
-                        <img src="https://raw.githubusercontent.com/babajideowoyele/babajideowoyele.github.io/main/Babajide.jpg" 
-                             alt="Babajide Alamu Owoyele" 
-                             class="w-80 h-auto border-4 border-black">
-                        <div class="absolute -top-4 -left-4 w-80 h-full border-2 border-gray-400 -z-10"></div>
+                    <p class="heading-03 text-secondary mb-4">Community Platform for Multimodal Data Analysis</p>
+                    <p class="body-02 text-secondary mb-6">
+                        Community-driven platform for sharing multimodal data analysis solutions. Leading development of
+                        open-source tools that lower entry barriers for newcomers in multimodal signal processing.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <p class="label-01 mb-2">Mission</p>
+                            <ul class="body-01 text-secondary space-y-1">
+                                <li>Increase research transparency &amp; reproducibility</li>
+                                <li>Lower entry barriers for newcomers</li>
+                                <li>Foster international collaboration</li>
+                                <li>Democratize multimodal research tools</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="label-01 mb-2">Community Impact</p>
+                            <ul class="body-01 text-secondary space-y-1">
+                                <li>Teaching modules &amp; dynamic dashboards</li>
+                                <li>Full body tracking with MediaPipe</li>
+                                <li>International research collaboration</li>
+                                <li>Educational platform serving globally</li>
+                            </ul>
+                        </div>
                     </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="cds-tag tag-blue">Community</span>
+                        <span class="cds-tag tag-teal">Open Science</span>
+                        <span class="cds-tag tag-purple">Education</span>
+                        <span class="cds-tag tag-gray">Platform</span>
+                    </div>
+                    <p class="body-01 text-secondary">
+                        Team: Cognitive scientists, AI researchers, linguists across Europe &middot;
+                        Partners: Tilburg University, University of Amsterdam, Leibniz Centre Berlin
+                    </p>
+                </article>
+
+                <!-- Other Projects -->
+                <p class="label-01 mb-4">Other Projects</p>
+                <div class="space-y-0 border-top-subtle">
+                    <article class="pub-row flex gap-4">
+                        <svg class="pictogram mt-1" aria-hidden="true"><use href="#picto-search"/></svg>
+                        <div class="flex-1">
+                            <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                                <h3 class="heading-03 font-medium">EnvisionHGdetector Framework</h3>
+                                <span class="cds-tag tag-gray mt-1 md:mt-0">2025</span>
+                            </div>
+                            <p class="body-01 text-secondary mb-3">Computational framework for co-speech gesture detection and kinematic analysis in multimodal communication research.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="cds-tag tag-blue">Python</span>
+                                <span class="cds-tag tag-teal">Computer Vision</span>
+                                <span class="cds-tag tag-purple">Machine Learning</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="pub-row flex gap-4">
+                        <svg class="pictogram mt-1" aria-hidden="true"><use href="#picto-user"/></svg>
+                        <div class="flex-1">
+                            <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                                <h3 class="heading-03 font-medium">MaskAnyone Toolkit</h3>
+                                <span class="cds-tag tag-gray mt-1 md:mt-0">2024</span>
+                            </div>
+                            <p class="body-01 text-secondary mb-3">Privacy-preserving strategies for audio-visual data archiving that balance open science with personal data protection.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="cds-tag tag-teal">Privacy</span>
+                                <span class="cds-tag tag-purple">Data Ethics</span>
+                                <span class="cds-tag tag-gray">Research Tools</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="pub-row flex gap-4">
+                        <svg class="pictogram mt-1" aria-hidden="true"><use href="#picto-africa"/></svg>
+                        <div class="flex-1">
+                            <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                                <h3 class="heading-03 font-medium">Deep Narratives Africa (DNA)</h3>
+                                <span class="cds-tag tag-gray mt-1 md:mt-0">Stealth</span>
+                            </div>
+                            <p class="body-01 text-secondary mb-3">Socio-semantic analysis of development actor narratives across African institutions using natural language processing.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="cds-tag tag-blue">NLP</span>
+                                <span class="cds-tag tag-purple">Text Mining</span>
+                                <span class="cds-tag tag-teal">Social Analysis</span>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- Research Section -->
-        <section id="research" class="section border-t border-black py-20">
-            <div class="container mx-auto px-6">
-                <div class="max-w-6xl">
-                    <h2 class="text-4xl font-light mb-12 flex items-center">
-                        <i class="fas fa-flask mr-4"></i>
-                        RESEARCH
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div class="space-y-8">
-                            <div class="border-l-2 border-black pl-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-eye"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold mb-2">MULTIMODAL DATA ANALYSIS</h3>
-                                    <p class="text-gray-700">Computational frameworks for gesture, speech, and visual data in collaborative settings. Focus on co-speech gesture detection and kinematic analysis.</p>
-                                </div>
-                            </div>
-                            <div class="border-l-2 border-black pl-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-cogs"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold mb-2">DESIGN SCIENCE RESEARCH</h3>
-                                    <p class="text-gray-700">Creating innovative artifacts that bridge academic theory with practical solutions for complex social systems.</p>
-                                </div>
-                            </div>
-                            <div class="border-l-2 border-black pl-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-leaf"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold mb-2">SUSTAINABILITY TRANSITIONS</h3>
-                                    <p class="text-gray-700">Using computational methods to understand how authors and their concepts enact social systems that de(accelerate) sustainability at scale.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-8">
-                            <div class="border-l-2 border-black pl-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold mb-2">AI ETHICS & PRIVACY</h3>
-                                    <p class="text-gray-700">Developing privacy-preserving tools for research data while maintaining scientific utility and accessibility.</p>
-                                </div>
-                            </div>
-                            <div class="border-l-2 border-black pl-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold mb-2">COMMUNITY BUILDING</h3>
-                                    <p class="text-gray-700">Leading collaborative platforms that democratize access to multimodal research tools and foster international scientific communities.</p>
-                                </div>
-                            </div>
-                            <div class="border-l-2 border-black pl-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold mb-2">ACTOR ROLE CARTOGRAPHY</h3>
-                                    <p class="text-gray-700">Mapping role plurality and interconnectedness in multi-actor constellations.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Work Section -->
-        <section id="work" class="section border-t border-black py-20">
-            <div class="container mx-auto px-6">
-                <div class="max-w-6xl">
-                    <h2 class="text-4xl font-light mb-12 flex items-center">
-                        <i class="fas fa-code mr-4"></i>
-                        SELECTED WORK
-                    </h2>
-                    
-                    <!-- Featured Projects -->
-                    <div class="mb-16">
-                        <h3 class="text-2xl font-light mb-8 flex items-center">
-                            <i class="fas fa-star mr-3"></i>
-                            Featured Projects
-                        </h3>
-                        
-                        <!-- SMASH Project -->
-                        <div class="project-highlight p-8 mb-8">
-                            <div class="flex items-start mb-6">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-microchip"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                        <h4 class="text-2xl font-bold">SMASH</h4>
-                                        <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded">2024-2025 • NWO Funded</span>
-                                    </div>
-                                    <p class="text-lg font-medium mb-4">Synthesis and Multimodal Analytics System for Humanities</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 mb-6">
-                                Leading development of a fully open-source tool that analyzes non-verbal communication - body language, 
-                                facial expressions, and speech patterns. SMASH integrates privacy-preserving data archiving with 
-                                behavioral analysis, making multimodal communication research accessible to non-programmers.
-                            </p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <h5 class="font-semibold mb-3 flex items-center">
-                                        <i class="fas fa-tools mr-2"></i>
-                                        Capabilities
-                                    </h5>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Hand gesture analysis & diversity metrics</li>
-                                        <li>• Facial expression & posture tracking</li>
-                                        <li>• Voice tone variation analysis</li>
-                                        <li>• Automatic speech transcription</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold mb-3 flex items-center">
-                                        <i class="fas fa-chart-line mr-2"></i>
-                                        Impact
-                                    </h5>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Cross-cultural speaker databases</li>
-                                        <li>• Clinical research applications</li>
-                                        <li>• Social sciences & humanities tool</li>
-                                        <li>• Privacy-first data archiving</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-black text-white text-xs">Multimodal AI</span>
-                                <span class="px-3 py-1 bg-black text-white text-xs">Computer Vision</span>
-                                <span class="px-3 py-1 bg-black text-white text-xs">NLP</span>
-                                <span class="px-3 py-1 bg-black text-white text-xs">Privacy Tech</span>
-                                <span class="px-3 py-1 bg-black text-white text-xs">Open Source</span>
-                            </div>
-                            <p class="text-xs text-gray-600">
-                                <strong>Collaboration:</strong> Radboud University, Hasso Plattner Institute • 
-                                Co-investigators: Gerard de Melo, Wim Pouw
-                            </p>
-                        </div>
-
-                        <!-- EnvisionBOX Project -->
-                        <div class="project-highlight p-8 mb-8">
-                            <div class="flex items-start mb-6">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-cube"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                        <h4 class="text-2xl font-bold">EnvisionBOX</h4>
-                                        <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded">Core Team Lead • Ongoing</span>
-                                    </div>
-                                    <p class="text-lg font-medium mb-4">Community Platform for Multimodal Data Analysis</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 mb-6">
-                                Community-driven platform for sharing multimodal data analysis solutions. Leading the development of 
-                                open-source tools that lower entry barriers for newcomers in multimodal signal processing and analysis.
-                            </p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <h5 class="font-semibold mb-3 flex items-center">
-                                        <i class="fas fa-bullseye mr-2"></i>
-                                        Mission
-                                    </h5>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Increase research transparency & reproducibility</li>
-                                        <li>• Lower entry barriers for newcomers</li>
-                                        <li>• Foster international collaboration</li>
-                                        <li>• Democratize multimodal research tools</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold mb-3 flex items-center">
-                                        <i class="fas fa-globe mr-2"></i>
-                                        Community Impact
-                                    </h5>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Teaching modules & dynamic dashboards</li>
-                                        <li>• Full body tracking with MediaPipe</li>
-                                        <li>• International research collaboration</li>
-                                        <li>• Educational platform serving globally</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-black text-white text-xs">Community Building</span>
-                                <span class="px-3 py-1 bg-black text-white text-xs">Open Science</span>
-                                <span class="px-3 py-1 bg-black text-white text-xs">Education</span>
-                                <span class="px-3 py-1 bg-black text-white text-xs">Platform Development</span>
-                            </div>
-                            <p class="text-xs text-gray-600">
-                                <strong>Team:</strong> Cognitive scientists, AI researchers, linguists across Europe • 
-                                Partners: Tilburg University, University of Amsterdam, Leibniz Centre Berlin
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Other Projects -->
-                    <div class="mb-16">
-                        <h3 class="text-2xl font-light mb-8 flex items-center">
-                            <i class="fas fa-laptop-code mr-3"></i>
-                            Other Projects
-                        </h3>
-                        <div class="space-y-8">
-                            <div class="border-b border-gray-300 pb-8 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-search"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                        <h4 class="text-xl font-semibold">EnvisionHGdetector Framework</h4>
-                                        <span class="text-sm text-gray-600">2025</span>
-                                    </div>
-                                    <p class="text-gray-700 mb-4">Computational framework for co-speech gesture detection and kinematic analysis in multimodal communication research.</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Python</span>
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Computer Vision</span>
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Machine Learning</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="border-b border-gray-300 pb-8 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-mask"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                        <h4 class="text-xl font-semibold">MaskAnyone Toolkit</h4>
-                                        <span class="text-sm text-gray-600">2024</span>
-                                    </div>
-                                    <p class="text-gray-700 mb-4">Privacy-preserving strategies for audio-visual data archiving that balance open science with personal data protection.</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Privacy</span>
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Data Ethics</span>
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Research Tools</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="border-b border-gray-300 pb-8 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-globe-africa"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                        <h4 class="text-xl font-semibold">Deep Narratives Africa (DNA)</h4>
-                                        <span class="text-sm text-gray-600">Stealth</span>
-                                    </div>
-                                    <p class="text-gray-700 mb-4">Socio-semantic analysis of development actor narratives across African institutions using natural language processing.</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1 bg-black text-white text-xs">NLP</span>
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Text Mining</span>
-                                        <span class="px-3 py-1 bg-black text-white text-xs">Social Analysis</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-<!-- Publications -->
+        <!-- ── Publications ── -->
+        <section id="publications" class="section bg-layer-01 py-16 md:py-24">
+            <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+                <div class="flex items-center gap-3 mb-10">
+                    <svg class="pictogram mb-0" aria-hidden="true"><use href="#picto-document"/></svg>
                     <div>
-                        <h3 class="text-2xl font-light mb-8 flex items-center">
-                            <i class="fas fa-file-alt mr-3"></i>
-                            Publications
-                        </h3>
+                        <p class="label-01 mb-1">Academic Output</p>
+                        <h2 class="heading-05">Publications</h2>
+                    </div>
+                </div>
+
+                <div class="border-top-subtle">
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">EnvisionHGdetector: A Computational Framework for Co-Speech Gesture Detection, Kinematic Analysis, and Interactive Visualization</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            Preprint &middot; 2025 &middot; with Wim Pouw, Bosco Yung, Sharjeel Ahmed Shaikh
+                        </p>
+                        <p class="body-01 text-secondary">Computational framework for kinematic analysis of automatically detected co-speech gestures from single-person videos using TensorFlow and five open datasets.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">MaskAnyone Toolkit: Offering Strategies for Minimizing Privacy Risks and Maximizing Utility in Audio-Visual Data Archiving</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            ResearchGate &middot; 2024
+                        </p>
+                        <p class="body-01 text-secondary">Privacy-preserving toolkit for de-identifying individuals in video and audio while balancing open science with personal data protection.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">Exploring Digital Health Solutions: Personalised Medicine and N-of-1 Trials in Ghana &mdash; A Scoping Review</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            Preprint &middot; 2024 &middot; with Godsway Sackey, Frank Kwesi Baiden, Stefan Konigorski
+                        </p>
+                        <p class="body-01 text-secondary">Scoping review of digital health applications and personalized medicine approaches in Ghana, examining N-of-1 trial implementations.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">StudyU: A Platform for Designing and Conducting Innovative Digital N-of-1 Trials</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            Journal of Medical Internet Research &middot; 2022 &middot;
+                            <a href="https://doi.org/10.2196/35884" target="_blank" rel="noopener noreferrer" class="cds-link">
+                                DOI: 10.2196/35884
+                                <svg class="icon inline-block ml-1" width="12" height="12" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                        </p>
+                        <p class="body-01 text-secondary">Open source platform for conducting personalized N-of-1 trials with innovative user-centric elements.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">StudyMe: A New Mobile App for User-Centric N-of-1 Trials</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            PMC &middot; 2022 &middot; with Alexander M Zenner, Stefan Konigorski
+                        </p>
+                        <p class="body-01 text-secondary">Mobile application supporting non-experts in conducting multi-crossover self-experiments to evaluate intervention effects on personal health goals.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">Exploring Ecosystem Orchestration Patterns and Systemic Intermediaries in Social Media</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            SSRN &middot; 2022 &middot; with Arash Hajikhani &middot;
+                            <a href="https://doi.org/10.2139/ssrn.4042351" target="_blank" rel="noopener noreferrer" class="cds-link">
+                                DOI: 10.2139/ssrn.4042351
+                                <svg class="icon inline-block ml-1" width="12" height="12" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                        </p>
+                        <p class="body-01 text-secondary">Analysis of social media ecosystems using digital trace data to map ecosystem orchestration and communication patterns in European Innovation Systems.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">Designing for Value Creation: Principles, Methods, and Case Insights from Embedding Designing-as-Performance in Digital Health Education and Research</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            Springer Design Thinking Research &middot; 2022 &middot;
+                            <a href="https://doi.org/10.1007/978-3-031-09297-8_10" target="_blank" rel="noopener noreferrer" class="cds-link">
+                                DOI: 10.1007/978-3-031-09297-8_10
+                                <svg class="icon inline-block ml-1" width="12" height="12" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                        </p>
+                        <p class="body-01 text-secondary">Exploration of value creation principles in healthcare through stakeholder engagement in academia and industry.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">Designing as Performance: Bridging the Gap Between Research and Practice in Design Thinking Education</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            Springer Design Thinking Research &middot; 2021 &middot;
+                            <a href="https://doi.org/10.1007/978-3-030-62037-0_3" target="_blank" rel="noopener noreferrer" class="cds-link">
+                                DOI: 10.1007/978-3-030-62037-0_3
+                                <svg class="icon inline-block ml-1" width="12" height="12" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                        </p>
+                        <p class="body-01 text-secondary">Research-based training materials for high-performing design teams, bridging design thinking research and practice in education.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">Neurodesign Live</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            Springer Design Thinking Research &middot; 2021 &middot;
+                            <a href="https://doi.org/10.1007/978-3-030-62037-0_17" target="_blank" rel="noopener noreferrer" class="cds-link">
+                                DOI: 10.1007/978-3-030-62037-0_17
+                                <svg class="icon inline-block ml-1" width="12" height="12" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                        </p>
+                        <p class="body-01 text-secondary">Cross-disciplinary exploration of synergies at the intersection of neuroscience, engineering, and design thinking in collaborative innovation.</p>
+                    </article>
+
+                    <article class="pub-row">
+                        <h3 class="heading-03 font-medium mb-1">Multimodal Mapping of Structure and Temporality of Institutional Logics in Multi-Actor Constellations</h3>
+                        <p class="body-01 text-secondary mb-2">
+                            ResearchGate &middot; Ongoing Research
+                        </p>
+                        <p class="body-01 text-secondary">Development of proto-ontology for socio-institutional analysis in sustainability transitions using computational literature review and machine learning.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Contact ── -->
+        <section id="contact" class="section py-16 md:py-24">
+            <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+                <div class="flex items-center gap-3 mb-10">
+                    <svg class="pictogram mb-0" aria-hidden="true"><use href="#icon-email"/></svg>
+                    <div>
+                        <p class="label-01 mb-1">Get in Touch</p>
+                        <h2 class="heading-05">Contact</h2>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <p class="body-02 text-secondary mb-8">
+                            Open to research collaborations, speaking opportunities, and innovative projects in multimodal analytics and computational sustainability.
+                        </p>
                         <div class="space-y-6">
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-search-plus"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">EnvisionHGdetector: A Computational Framework for Co-Speech Gesture Detection, Kinematic Analysis, and Interactive Visualization</h4>
-                                    <p class="text-sm text-gray-600 mb-2">Preprint • 2025 • Co-authored with Wim Pouw, Bosco Yung, Sharjeel Ahmed Shaikh</p>
-                                    <p class="text-gray-700">Computational framework for kinematic analysis of automatically detected co-speech gestures from single-person videos using TensorFlow and five open datasets.</p>
-                                </div>
+                            <div>
+                                <p class="label-01 mb-1">Radboud University</p>
+                                <a href="mailto:babajide.owoyele@ru.nl" class="cds-link body-02">
+                                    babajide.owoyele@ru.nl
+                                </a>
                             </div>
-
-                                                   <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-user-secret"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">MaskAnyone Toolkit: Offering Strategies for Minimizing Privacy Risks and Maximizing Utility in Audio-Visual Data Archiving</h4>
-                                    <p class="text-sm text-gray-600 mb-2">ResearchGate • 2024</p>
-                                    <p class="text-gray-700">Privacy-preserving toolkit for researchers to de-identify individuals in video and audio while balancing open science with personal data protection.</p>
-                                </div>
-                            </div>     
-
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">StudyU: A Platform for Designing and Conducting Innovative Digital N-of-1 Trials</h4>
-                                    <p class="text-sm text-gray-600 mb-2">Journal of Medical Internet Research • 2022 • DOI: 10.2196/35884</p>
-                                    <p class="text-gray-700">Open source platform including StudyU Designer and app for conducting personalized N-of-1 trials with innovative user-centric elements.</p>
-                                </div>
-                            </div>
-
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">StudyMe: A New Mobile App for User-Centric N-of-1 Trials</h4>
-                                    <p class="text-sm text-gray-600 mb-2">PMC • 2022 • Co-authored with Alexander M Zenner, Stefan Konigorski</p>
-                                    <p class="text-gray-700">Mobile application supporting non-experts in conducting multi-crossover self-experiments to evaluate intervention effects on personal health goals.</p>
-                                </div>
-                            </div>
-
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Designing for Value Creation: Principles, Methods, and Case Insights from Embedding Designing-as-Performance in Digital Health Education and Research</h4>
-                                    <p class="text-sm text-gray-600 mb-2">Springer Design Thinking Research • 2022 • DOI: 10.1007/978-3-031-09297-8_10</p>
-                                    <p class="text-gray-700">Exploration of value creation principles in healthcare through stakeholder engagement in academia and industry, with focus on education and training.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-theater-masks"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Designing as Performance: Bridging the Gap Between Research and Practice in Design Thinking Education</h4>
-                                    <p class="text-sm text-gray-600 mb-2">Springer Design Thinking Research • 2021 • DOI: 10.1007/978-3-030-62037-0_3</p>
-                                    <p class="text-gray-700">Research-based training materials for high-performing design teams, bridging the gap between design thinking research and practice in education.</p>
-                                </div>
-                            </div>
-
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-brain"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Neurodesign Live</h4>
-                                    <p class="text-sm text-gray-600 mb-2">Springer Design Thinking Research • 2021 • DOI: 10.1007/978-3-030-62037-0_17</p>
-                                    <p class="text-gray-700">Cross-disciplinary exploration of synergies at the intersection of neuroscience, engineering, and design thinking in collaborative innovation processes.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-network-wired"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Exploring Ecosystem Orchestration Patterns and Systemic Intermediaries in Social Media</h4>
-                                    <p class="text-sm text-gray-600 mb-2">SSRN • 2022 • DOI: 10.2139/ssrn.4042351 • Co-authored with Arash Hajikhani</p>
-                                    <p class="text-gray-700">Analysis of social media ecosystems using digital trace data to map ecosystem orchestration and communication patterns in European Innovation Systems.</p>
-                                </div>
-                            </div>
-
-                            <div class="border-b border-gray-300 pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-globe-africa"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Exploring Digital Health Solutions: Personalised Medicine and N-of-1 Trials in Ghana - A Scoping Review</h4>
-                                    <p class="text-sm text-gray-600 mb-2">Preprint • 2024 • Co-authored with Godsway Sackey, Frank Kwesi Baiden, Stefan Konigorski</p>
-                                    <p class="text-gray-700">Scoping review of digital health applications and personalized medicine approaches in Ghana, examining N-of-1 trial implementations.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pb-6 flex">
-                                <div class="icon-box mr-4">
-                                    <i class="fas fa-cogs"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Multimodal Mapping of Structure and Temporality of Institutional Logics in Multi-Actor Constellations</h4>
-                                    <p class="text-sm text-gray-600 mb-2">ResearchGate • Ongoing Research</p>
-                                    <p class="text-gray-700">Development of proto-ontology for socio-institutional analysis in sustainability transitions using computational literature review and machine learning.</p>
-                                </div>
+                            <div>
+                                <p class="label-01 mb-1">Hasso Plattner Institute</p>
+                                <a href="mailto:babajide.owoyele@hpi.de" class="cds-link body-02">
+                                    babajide.owoyele@hpi.de
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                    
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section border-t border-black py-20">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl">
-                    <h2 class="text-4xl font-light mb-12 flex items-center">
-                        <i class="fas fa-envelope mr-4"></i>
-                        CONTACT
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div>
-                            <p class="text-xl mb-8">Open to research collaborations, speaking opportunities, and innovative projects in computational sustainability.</p>
-                            <div class="space-y-4">
-                                <div class="flex items-center">
-                                    <div class="icon-box mr-4">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold mb-1">EMAIL</h4>
-                                        <a href="mailto:owoyele@drift.eur.nl" class="hover:bg-black hover:text-white px-2 py-1 transition-all duration-200">owoyele@drift.eur.nl</a>
-                                    </div>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="icon-box mr-4">
-                                        <i class="fas fa-university"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold mb-1">INSTITUTIONAL</h4>
-                                        <a href="mailto:babajide.owoyele@hpi.de" class="hover:bg-black hover:text-white px-2 py-1 transition-all duration-200">babajide.owoyele@hpi.de</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-4 flex items-center">
-                                <i class="fas fa-link mr-2"></i>
-                                CONNECT
-                            </h4>
-                            <div class="space-y-3">
-                                <a href="https://www.linkedin.com/in/babajide-owoyele-24591b52/" class="flex items-center hover:bg-black hover:text-white px-2 py-1 transition-all duration-200 w-fit">
-                                    <i class="fab fa-linkedin mr-3"></i>
-                                    LinkedIn
-                                </a>
-                                <a href="https://github.com/babajideowoyele" class="flex items-center hover:bg-black hover:text-white px-2 py-1 transition-all duration-200 w-fit">
-                                    <i class="fab fa-github mr-3"></i>
-                                    GitHub
-                                </a>
-                                <a href="https://www.researchgate.net/profile/Babajide-Owoyele" class="flex items-center hover:bg-black hover:text-white px-2 py-1 transition-all duration-200 w-fit">
-                                    <i class="fas fa-flask mr-3"></i>
-                                    ResearchGate
-                                </a>
-                                <a href="https://scholar.google.com/citations?user=owcx4G0AAAAJ&hl=en" class="flex items-center hover:bg-black hover:text-white px-2 py-1 transition-all duration-200 w-fit">
-                                    <i class="fas fa-graduation-cap mr-3"></i>
-                                    Google Scholar
-                                </a>
-                            </div>
-                        </div>
+                    <div>
+                        <p class="label-01 mb-4">Profiles</p>
+                        <nav class="space-y-3" aria-label="External profiles">
+                            <a href="https://www.linkedin.com/in/babajide-owoyele-24591b52/"
+                               target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-3 body-02 cds-link">
+                                <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-linkedin"/></svg>
+                                LinkedIn
+                                <svg class="icon ml-auto" width="16" height="16" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                            <a href="https://github.com/babajideowoyele"
+                               target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-3 body-02 cds-link">
+                                <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-github"/></svg>
+                                GitHub
+                                <svg class="icon ml-auto" width="16" height="16" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                            <a href="https://www.researchgate.net/profile/Babajide-Owoyele"
+                               target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-3 body-02 cds-link">
+                                <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-globe"/></svg>
+                                ResearchGate
+                                <svg class="icon ml-auto" width="16" height="16" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=owcx4G0AAAAJ&hl=en"
+                               target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-3 body-02 cds-link">
+                                <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-education"/></svg>
+                                Google Scholar
+                                <svg class="icon ml-auto" width="16" height="16" aria-hidden="true"><use href="#icon-launch"/></svg>
+                            </a>
+                        </nav>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-black py-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                <p class="text-sm text-gray-600">© 2025 Babajide Alamu Owoyele</p>
-                <p class="text-sm text-gray-600">Design Science • Multimodal Cartography • Sustainability Transitions</p>
-            </div>
+    <!-- ── Footer ── -->
+    <footer class="cds-footer py-6" role="contentinfo">
+        <div class="max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+            <p class="text-sm footer-text">&copy; 2026 Babajide Alamu Owoyele</p>
+            <p class="text-sm font-mono footer-text">Multimodal Analytics &middot; Design Science &middot; Sustainability Transitions</p>
         </div>
     </footer>
 
-    </div> <!-- End content-wrapper -->
-
     <script>
-        // Create floating graph elements
-        function createGraphElements() {
-            const container = document.getElementById('graphContainer');
-            const numNodes = 12;
-            const numConnections = 6;
-            
-            // Create nodes
-            for (let i = 0; i < numNodes; i++) {
-                const node = document.createElement('div');
-                node.className = Math.random() > 0.7 ? 'node large' : 'node';
-                node.style.left = Math.random() * 100 + '%';
-                node.style.top = Math.random() * 100 + '%';
-                node.style.animationDelay = Math.random() * 25 + 's';
-                node.style.animationDuration = (20 + Math.random() * 10) + 's';
-                container.appendChild(node);
-            }
-            
-            // Create connections
-            for (let i = 0; i < numConnections; i++) {
-                const connection = document.createElement('div');
-                connection.className = 'connection';
-                connection.style.left = Math.random() * 90 + '%';
-                connection.style.top = Math.random() * 90 + '%';
-                connection.style.width = (40 + Math.random() * 150) + 'px';
-                connection.style.transform = `rotate(${Math.random() * 360}deg)`;
-                connection.style.animationDelay = Math.random() * 20 + 's';
-                container.appendChild(connection);
-            }
-        }
-        
-        // Initialize graph on load
-        document.addEventListener('DOMContentLoaded', createGraphElements);
+        // ── Theme toggle ──
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
 
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            const useEl = themeIcon.querySelector('use');
+            useEl.setAttribute('href', theme === 'dark' ? '#icon-sun' : '#icon-moon');
+            themeToggle.setAttribute('aria-label',
+                theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+            );
+        }
+
+        // Initialize: default to light, override with saved or system pref
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+            setTheme(saved);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // ── Mobile menu ──
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
         menuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
+            menuBtn.setAttribute('aria-expanded', String(!isOpen));
+            const useEl = menuBtn.querySelector('use');
+            useEl.setAttribute('href', isOpen ? '#icon-menu' : '#icon-close');
+            menuBtn.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
         });
 
-        // Smooth scrolling for navigation links
+        // ── Smooth scrolling ──
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    menuBtn.querySelector('use').setAttribute('href', '#icon-menu');
                 }
-                
-                if (this.getAttribute('href') !== '#') {
+
+                const href = this.getAttribute('href');
+                if (href !== '#') {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        target.setAttribute('tabindex', '-1');
+                        target.focus({ preventScroll: true });
+                    }
                 }
             });
         });
@@ -728,7 +940,3 @@
 
 </body>
 </html>
-
-
-
-
