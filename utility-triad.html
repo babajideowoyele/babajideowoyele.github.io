@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Utility Triad — a framework for analytic, reflexive, and generative utility in multimodal data infrastructure. Babajide Alamu Owoyele, SYNAPSIS / Radboud University.">
+<meta name="theme-color" content="#161616">
+<title>The Utility Triad — Babajide Alamu Owoyele</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['IBM Plex Sans', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'monospace'],
+      },
+      colors: {
+        'cds-blue':      '#0f62fe',
+        'cds-blue-dark': '#0043ce',
+        'cds-blue-light':'#d0e2ff',
+        'cds-teal':      '#009d9a',
+        'cds-teal-dark': '#005d5d',
+        'cds-teal-light':'#9ef0f0',
+        'cds-purple':    '#8a3ffc',
+        'cds-purple-dark':'#6929c4',
+        'cds-purple-light':'#e8daff',
+        'cds-gray-10':   '#f4f4f4',
+        'cds-gray-20':   '#e0e0e0',
+        'cds-gray-40':   '#a8a8a8',
+        'cds-gray-60':   '#6f6f6f',
+        'cds-gray-80':   '#393939',
+        'cds-gray-100':  '#161616',
+        'cds-shell':     '#161616',
+        'cds-shell-2':   '#262626',
+      }
+    }
+  }
+}
+</script>
+<style>
+  :root {
+    --cds-focus: #0f62fe;
+    --au-core:   #0f62fe;
+    --ru-core:   #009d9a;
+    --gu-core:   #8a3ffc;
+  }
+  body { font-family: 'IBM Plex Sans', sans-serif; }
+
+  /* Carbon UI Shell */
+  .cds-header {
+    background: #161616;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    border-bottom: 1px solid #393939;
+  }
+  .cds-header-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0 16px;
+    letter-spacing: 0.01em;
+  }
+  .cds-header-name span { font-weight: 300; color: #a8a8a8; padding-left: 4px; }
+
+  /* Vertex card top rule */
+  .au-rule { border-top: 4px solid #0f62fe; }
+  .ru-rule { border-top: 4px solid #009d9a; }
+  .gu-rule { border-top: 4px solid #8a3ffc; }
+
+  /* Carbon tag */
+  .cds-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    margin: 3px 3px 0 0;
+  }
+
+  /* Theory cite block */
+  .theory-cite {
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+    padding: 14px 18px;
+    background: #262626;
+    border-left: 3px solid #78a9ff;
+    color: #a8a8a8;
+  }
+</style>
+</head>
+<body class="bg-cds-gray-10 text-cds-gray-100">
+
+<!-- ── Carbon UI Shell ──────────────────────────────────────────────────────── -->
+<header class="cds-header">
+  <a class="cds-header-name" href="index.html">Babajide Owoyele <span>/ Utility Triad</span></a>
+  <nav class="ml-auto flex items-center gap-0 h-full">
+    <a href="index.html" class="text-xs font-mono text-[#a8a8a8] hover:text-white px-4 h-full flex items-center tracking-widest uppercase hover:bg-[#2d2d2d] transition-colors">Home</a>
+    <a href="#preprint" class="text-xs font-mono text-[#a8a8a8] hover:text-white px-4 h-full flex items-center tracking-widest uppercase hover:bg-[#2d2d2d] transition-colors">Preprint ↗</a>
+  </nav>
+</header>
+
+<!-- ── Hero ────────────────────────────────────────────────────────────────── -->
+<section class="bg-cds-gray-100 text-white py-20 px-4">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs font-mono tracking-widest uppercase text-[#78a9ff] mb-5">SMASH · SYNAPSIS · NWO TDCC-SSH · 2026</p>
+    <h1 class="text-5xl font-light leading-tight tracking-tight mb-6 max-w-2xl">
+      The <span class="font-semibold">Utility Triad</span><br>
+      for Multimodal<br>Data Infrastructure
+    </h1>
+    <p class="text-[#c6c6c6] text-base leading-relaxed max-w-xl mb-10">
+      A conceptual framework for what researchers need from audiovisual data systems — and what responsible infrastructure must provide at each tier.
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#vertices" class="inline-flex items-center gap-2 bg-cds-blue text-white px-5 py-3 text-sm hover:bg-cds-blue-dark transition-colors">
+        Explore the triad
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L15 8L8 15M15 8H1"/></svg>
+      </a>
+      <a href="#preprint" class="inline-flex items-center gap-2 border border-[#78a9ff] text-[#78a9ff] px-5 py-3 text-sm hover:bg-[rgba(120,169,255,0.1)] transition-colors">
+        Read preprint →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Triad diagram + legend ───────────────────────────────────────────────── -->
+<section class="bg-white py-16 px-4">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+    <!-- SVG triangle -->
+    <div>
+      <svg viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-md mx-auto block">
+
+        <polygon points="220,36 54,370 386,370" fill="#f4f4f4"/>
+        <line x1="220" y1="36"  x2="54"  y2="370" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,4"/>
+        <line x1="220" y1="36"  x2="386" y2="370" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,4"/>
+        <line x1="54"  y1="370" x2="386" y2="370" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,4"/>
+
+        <text x="220" y="400" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#a8a8a8" text-anchor="middle">data-driven ↔ theory-driven</text>
+
+        <!-- SMASH centre -->
+        <rect x="168" y="178" width="104" height="42" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+        <text x="220" y="194" font-family="'IBM Plex Sans',sans-serif" font-size="11" font-weight="600" fill="#161616" text-anchor="middle">SMASH</text>
+        <text x="220" y="208" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8d8d8d" text-anchor="middle">event log · MaskBench · JEGAL</text>
+
+        <!-- AU (top) -->
+        <circle cx="220" cy="36" r="34" fill="#d0e2ff" stroke="#0f62fe" stroke-width="1.5"/>
+        <g transform="translate(206,20)" fill="none" stroke="#0f62fe" stroke-width="1.5" stroke-linecap="round">
+          <line x1="1" y1="26" x2="1" y2="1"/><line x1="1" y1="26" x2="27" y2="26"/>
+          <rect x="3" y="17" width="4" height="9" fill="#0f62fe" opacity="0.2" stroke="none"/>
+          <rect x="9" y="11" width="4" height="15" fill="#0f62fe" opacity="0.2" stroke="none"/>
+          <rect x="15" y="7" width="4" height="19" fill="#0f62fe" opacity="0.2" stroke="none"/>
+          <rect x="21" y="13" width="4" height="13" fill="#0f62fe" opacity="0.2" stroke="none"/>
+          <polyline points="5,16 11,10 17,6 23,12" stroke-width="1.5"/>
+          <circle cx="5" cy="16" r="1.5" fill="#0f62fe" stroke="none"/>
+          <circle cx="11" cy="10" r="1.5" fill="#0f62fe" stroke="none"/>
+          <circle cx="17" cy="6"  r="1.5" fill="#0f62fe" stroke="none"/>
+          <circle cx="23" cy="12" r="1.5" fill="#0f62fe" stroke="none"/>
+        </g>
+        <text x="220" y="84"  font-family="'IBM Plex Sans',sans-serif" font-size="11" font-weight="700" fill="#0f62fe" text-anchor="middle">AU</text>
+        <text x="220" y="97"  font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#525252" text-anchor="middle">Analytic Utility</text>
+
+        <!-- RU (bottom-left) -->
+        <circle cx="54" cy="370" r="34" fill="#9ef0f0" stroke="#009d9a" stroke-width="1.5"/>
+        <g transform="translate(39,354)" fill="none" stroke="#009d9a" stroke-width="1.5" stroke-linecap="round">
+          <path d="M15 1L2 6v8c0 6.5 5 12 13 13 8-1 13-6.5 13-13V6L15 1Z" fill="#009d9a" opacity="0.1"/>
+          <path d="M15 1L2 6v8c0 6.5 5 12 13 13 8-1 13-6.5 13-13V6L15 1Z"/>
+          <line x1="8" y1="13" x2="22" y2="13"/>
+          <line x1="8" y1="17" x2="20" y2="17"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <rect x="12" y="6" width="6" height="5" rx="1"/><path d="M14 7.5C14 6.5 16 6.5 16 7.5" stroke-width="1.2"/>
+        </g>
+        <text x="54"  y="418" font-family="'IBM Plex Sans',sans-serif" font-size="11" font-weight="700" fill="#009d9a" text-anchor="middle">RU</text>
+        <text x="54"  y="431" font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#525252" text-anchor="middle">Reflexive Utility</text>
+
+        <!-- GU (bottom-right) -->
+        <circle cx="386" cy="370" r="34" fill="#e8daff" stroke="#8a3ffc" stroke-width="1.5"/>
+        <g transform="translate(371,354)" fill="none" stroke="#8a3ffc" stroke-width="1.5" stroke-linecap="round">
+          <path d="M15 1C8 1 3 6.5 3 13c0 4 2 7.5 5.5 9.5V26h13v-3.5C25 20.5 27 17 27 13 27 6.5 22 1 15 1Z" fill="#8a3ffc" opacity="0.08"/>
+          <path d="M15 1C8 1 3 6.5 3 13c0 4 2 7.5 5.5 9.5V26h13v-3.5C25 20.5 27 17 27 13 27 6.5 22 1 15 1Z"/>
+          <line x1="9" y1="26" x2="21" y2="26"/>
+          <circle cx="15" cy="8"  r="2" fill="#8a3ffc" stroke="none"/>
+          <circle cx="9"  cy="15" r="2" fill="#8a3ffc" stroke="none"/>
+          <circle cx="21" cy="15" r="2" fill="#8a3ffc" stroke="none"/>
+          <line x1="15" y1="10" x2="9"  y2="13" stroke-width="1" opacity="0.6"/>
+          <line x1="15" y1="10" x2="21" y2="13" stroke-width="1" opacity="0.6"/>
+          <line x1="9"  y1="15" x2="21" y2="15" stroke-width="1" opacity="0.6"/>
+        </g>
+        <text x="386" y="418" font-family="'IBM Plex Sans',sans-serif" font-size="11" font-weight="700" fill="#8a3ffc" text-anchor="middle">GU</text>
+        <text x="386" y="431" font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#525252" text-anchor="middle">Generative Utility</text>
+      </svg>
+    </div>
+
+    <!-- Legend / text -->
+    <div>
+      <h2 class="text-3xl font-light tracking-tight mb-4">Three vertices.<br><strong class="font-semibold">One infrastructure.</strong></h2>
+      <p class="text-[#525252] text-sm leading-relaxed mb-4">Most discussions treat analytic power and privacy compliance as opposing forces. The utility triad reframes this: AU, RU, and GU are interdependent dimensions of what mature multimodal infrastructure must address.</p>
+      <p class="text-[#525252] text-sm leading-relaxed mb-6">SMASH is the reference implementation — operationalising all three tiers through its canonical event log, MaskBench benchmarks, and JEGAL embedding substrate.</p>
+
+      <div class="flex flex-col gap-4">
+        <div class="flex items-start gap-3">
+          <div class="w-3 h-3 rounded-full bg-cds-blue mt-1 flex-shrink-0"></div>
+          <div>
+            <p class="text-sm font-semibold text-cds-blue">AU — Analytic Utility</p>
+            <p class="text-xs text-[#525252]">Extract maximum signal · enable novel research design</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-3 h-3 rounded-full bg-cds-teal mt-1 flex-shrink-0"></div>
+          <div>
+            <p class="text-sm font-semibold text-cds-teal">RU — Reflexive Utility</p>
+            <p class="text-xs text-[#525252]">Privacy & de-identification · accessible to SSH early career researchers</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-3 h-3 rounded-full bg-cds-purple mt-1 flex-shrink-0"></div>
+          <div>
+            <p class="text-sm font-semibold text-cds-purple">GU — Generative Utility</p>
+            <p class="text-xs text-[#525252]">Synthetic data · model training · deepfakes · responsible by design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Three vertex cards ────────────────────────────────────────────────────── -->
+<section class="py-16 px-4 bg-cds-gray-10" id="vertices">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs font-mono tracking-widest uppercase text-[#a8a8a8] mb-4 pb-3 border-b border-[#e0e0e0]">Three vertices</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#e0e0e0] border border-[#e0e0e0]">
+
+      <!-- AU card -->
+      <div class="au-rule bg-white p-10 flex flex-col">
+        <span class="cds-tag bg-cds-blue-light text-cds-blue-dark self-start mb-6">AU · Analytic Utility</span>
+
+        <!-- AU pictogram -->
+        <div class="mb-6">
+          <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2"  y="22" width="4" height="8"  fill="#0f62fe" opacity="0.25"/>
+            <rect x="8"  y="16" width="4" height="14" fill="#0f62fe" opacity="0.25"/>
+            <rect x="14" y="10" width="4" height="20" fill="#0f62fe" opacity="0.25"/>
+            <rect x="20" y="18" width="4" height="12" fill="#0f62fe" opacity="0.25"/>
+            <rect x="26" y="14" width="4" height="16" fill="#0f62fe" opacity="0.25"/>
+            <polyline points="4,21 10,15 16,9 22,17 28,13" stroke="#0f62fe" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="4"  cy="21" r="1.5" fill="#0f62fe"/>
+            <circle cx="10" cy="15" r="1.5" fill="#0f62fe"/>
+            <circle cx="16" cy="9"  r="1.5" fill="#0f62fe"/>
+            <circle cx="22" cy="17" r="1.5" fill="#0f62fe"/>
+            <circle cx="28" cy="13" r="1.5" fill="#0f62fe"/>
+            <line x1="1" y1="30" x2="31" y2="30" stroke="#0f62fe" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="1" y1="2"  x2="1"  y2="30" stroke="#0f62fe" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-normal mb-3">Analytic Utility</h3>
+        <p class="text-sm text-[#525252] leading-relaxed flex-1">The signal extractable from a corpus using available analytic methods. Every pipeline decision — masking, segmentation, extraction, alignment — either preserves or reduces it. Maximising AU enables <strong class="font-medium text-[#161616]">novel research designs</strong>: cross-corpus comparisons, longitudinal kinematic tracking, gesture–prosody synchrony analysis at scale.</p>
+        <div class="mt-6">
+          <span class="cds-tag bg-cds-blue-light text-cds-blue-dark">pose estimation</span>
+          <span class="cds-tag bg-cds-blue-light text-cds-blue-dark">speech features</span>
+          <span class="cds-tag bg-cds-blue-light text-cds-blue-dark">kinematic sync</span>
+          <span class="cds-tag bg-cds-blue-light text-cds-blue-dark">novel research design</span>
+        </div>
+      </div>
+
+      <!-- RU card -->
+      <div class="ru-rule bg-white p-10 flex flex-col">
+        <span class="cds-tag bg-cds-teal-light text-cds-teal-dark self-start mb-6">RU · Reflexive Utility</span>
+
+        <!-- RU pictogram -->
+        <div class="mb-6">
+          <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L3 7.5V16c0 8 5.5 14.5 13 16 7.5-1.5 13-8 13-16V7.5L16 2Z" fill="#009d9a" opacity="0.12"/>
+            <path d="M16 2L3 7.5V16c0 8 5.5 14.5 13 16 7.5-1.5 13-8 13-16V7.5L16 2Z" stroke="#009d9a" stroke-width="1.5" stroke-linejoin="round"/>
+            <line x1="9"  y1="14" x2="23" y2="14" stroke="#009d9a" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="9"  y1="18" x2="21" y2="18" stroke="#009d9a" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="9"  y1="22" x2="17" y2="22" stroke="#009d9a" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="13" y="7" width="6" height="5" rx="1" stroke="#009d9a" stroke-width="1.25"/>
+            <path d="M15 8.5C15 7.5 17 7.5 17 8.5" stroke="#009d9a" stroke-width="1.25" fill="none"/>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-normal mb-3">Reflexive Utility</h3>
+        <p class="text-sm text-[#525252] leading-relaxed flex-1"><strong class="font-medium text-[#161616]">Privacy and de-identification made accessible to SSH early career researchers.</strong> RU is the capacity to reason explicitly about what each masking choice costs in analytic quality — so researchers balance rather than toggle. SMASH operationalises RU through MaskBench benchmarks and provenance metadata that travel with every event in the log, lowering the barrier for ECRs who need to share video corpora responsibly.</p>
+        <div class="mt-6">
+          <span class="cds-tag bg-cds-teal-light text-cds-teal-dark">de-identification</span>
+          <span class="cds-tag bg-cds-teal-light text-cds-teal-dark">MaskBench</span>
+          <span class="cds-tag bg-cds-teal-light text-cds-teal-dark">provenance</span>
+          <span class="cds-tag bg-cds-teal-light text-cds-teal-dark">ECR-accessible</span>
+          <span class="cds-tag bg-cds-teal-light text-cds-teal-dark">FAIR</span>
+        </div>
+      </div>
+
+      <!-- GU card -->
+      <div class="gu-rule bg-white p-10 flex flex-col">
+        <span class="cds-tag bg-cds-purple-light text-cds-purple-dark self-start mb-6">GU · Generative Utility</span>
+
+        <!-- GU pictogram -->
+        <div class="mb-6">
+          <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2C9.4 2 4 7.4 4 14c0 4.4 2.4 8.3 6 10.4V28h12v-3.6c3.6-2.1 6-6 6-10.4C28 7.4 22.6 2 16 2Z" fill="#8a3ffc" opacity="0.08"/>
+            <path d="M16 2C9.4 2 4 7.4 4 14c0 4.4 2.4 8.3 6 10.4V28h12v-3.6c3.6-2.1 6-6 6-10.4C28 7.4 22.6 2 16 2Z" stroke="#8a3ffc" stroke-width="1.5" stroke-linejoin="round"/>
+            <line x1="10" y1="28" x2="22" y2="28" stroke="#8a3ffc" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="16" cy="9"  r="2" fill="#8a3ffc"/>
+            <circle cx="10" cy="15" r="2" fill="#8a3ffc"/>
+            <circle cx="22" cy="15" r="2" fill="#8a3ffc"/>
+            <circle cx="16" cy="21" r="2" fill="#8a3ffc"/>
+            <line x1="16" y1="11" x2="10" y2="13" stroke="#8a3ffc" stroke-width="1"  stroke-linecap="round" opacity="0.6"/>
+            <line x1="16" y1="11" x2="22" y2="13" stroke="#8a3ffc" stroke-width="1"  stroke-linecap="round" opacity="0.6"/>
+            <line x1="10" y1="17" x2="16" y2="19" stroke="#8a3ffc" stroke-width="1"  stroke-linecap="round" opacity="0.6"/>
+            <line x1="22" y1="17" x2="16" y2="19" stroke="#8a3ffc" stroke-width="1"  stroke-linecap="round" opacity="0.6"/>
+            <line x1="10" y1="15" x2="22" y2="15" stroke="#8a3ffc" stroke-width="1"  stroke-linecap="round" opacity="0.6"/>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-normal mb-3">Generative Utility</h3>
+        <p class="text-sm text-[#525252] leading-relaxed flex-1">The capacity to synthesize new data and representations using generative AI. Use cases span <strong class="font-medium text-[#161616]">synthetic data generation</strong>, <strong class="font-medium text-[#161616]">model training</strong> on privacy-preserved corpora, and — at the risk frontier — <strong class="font-medium text-[#161616]">deepfake production</strong> that responsible governance must anticipate. The most powerful tier and the most governance-demanding.</p>
+        <div class="mt-6">
+          <span class="cds-tag bg-cds-purple-light text-cds-purple-dark">synthetic data</span>
+          <span class="cds-tag bg-cds-purple-light text-cds-purple-dark">model training</span>
+          <span class="cds-tag bg-cds-purple-light text-cds-purple-dark">deepfake risk</span>
+          <span class="cds-tag bg-cds-purple-light text-cds-purple-dark">JEGAL</span>
+          <span class="cds-tag bg-cds-purple-light text-cds-purple-dark">responsible AI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Theory grounding ─────────────────────────────────────────────────────── -->
+<section class="bg-cds-gray-100 text-white py-16 px-4" id="preprint">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 items-start">
+    <div>
+      <p class="text-xs font-mono tracking-widest uppercase text-[#78a9ff] mb-4">Theoretical grounding</p>
+      <h2 class="text-2xl font-light leading-snug">
+        <strong class="font-semibold">Extending</strong> Maass et al.<br>
+        into multimodal<br>infrastructure
+      </h2>
+    </div>
+    <div class="md:col-span-2 space-y-4 text-sm text-[#c6c6c6] leading-relaxed">
+      <p>The utility triad extends the <strong class="text-white">data-driven / theory-driven framework</strong> of Maass, Parsons, Purao, Storey &amp; Woo (2018, <em>JAIS</em>) into the specific context of multimodal data infrastructure. Their four IS challenges map cleanly onto the three vertices: AU addresses challenges 1 and 2 (knowledge creation and theory testing); RU addresses challenge 4 (sharing under privacy constraints); GU opens a fifth challenge that was beyond 2018 scope — synthesis.</p>
+      <p>The base edge of the triangle — <strong class="text-white">RU ↔ GU</strong> — is the governance frontier: as generative AI increases the power to produce synthetic corpora, the reflexive capacity to audit and constrain that production becomes existentially important. Infrastructure that operationalises only AU without RU is incomplete; infrastructure that enables GU without RU is dangerous.</p>
+      <p>A preprint formally introducing the framework is in preparation.</p>
+      <div class="theory-cite mt-6">
+        Maass, W., Parsons, J., Purao, S., Storey, V. C., &amp; Woo, C. (2018). Data-Driven Meets Theory-Driven Research in the Era of Big Data. <em>Journal of the Association for Information Systems</em>, 19(12), 1253–1273. doi:10.17705/1jais.00526
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────────────────────────────── -->
+<footer class="bg-[#262626] text-[#a8a8a8] text-xs font-mono py-6 px-4 flex flex-wrap justify-between gap-2">
+  <span>Babajide Alamu Owoyele · Radboud University · SYNAPSIS · NWO TDCC-SSH</span>
+  <span><a href="mailto:b.owoyele@ru.nl" class="text-[#78a9ff] hover:underline">b.owoyele@ru.nl</a> · <a href="index.html" class="text-[#78a9ff] hover:underline">babajideowoyele.github.io</a></span>
+</footer>
+
+</body>
+</html>

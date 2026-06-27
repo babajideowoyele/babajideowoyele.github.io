@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>DSR Propaganda — Babajide Owoyele</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --bg-dark:#161616;
+  --layer:#f4f4f4; --layer-dark:#262626;
+  --border:#e0e0e0; --border-dark:#393939;
+  --text:#161616; --text-dark:#f4f4f4;
+  --muted:#525252; --muted-dark:#c6c6c6;
+  --subtle:#8d8d8d;
+  --link:#0f62fe; --link-dark:#78a9ff;
+  --au:#0f62fe; --ru:#009d9a; --gu:#8a3ffc;
+  --header:#161616;
+  --tile-hover:#e8e8e8; --tile-hover-dark:#353535;
+}
+[data-theme="dark"]{
+  --bg:var(--bg-dark); --layer:var(--layer-dark);
+  --border:var(--border-dark); --text:var(--text-dark);
+  --muted:var(--muted-dark); --link:var(--link-dark);
+  --tile-hover:var(--tile-hover-dark);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh;transition:background-color 200ms,color 200ms;}
+
+/* Gate */
+#gate{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:20px;}
+#gate .back{position:absolute;top:12px;left:16px;font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);text-decoration:none;}
+#gate .back:hover{color:var(--text);}
+#gate h1{font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);letter-spacing:0.15em;}
+#gate input{background:var(--layer);border:1px solid var(--border);color:var(--text);padding:11px 16px;font-size:15px;font-family:'IBM Plex Mono',monospace;width:220px;text-align:center;letter-spacing:0.2em;outline:none;}
+#gate input:focus{border-color:var(--subtle);}
+#gate .err{font-size:11px;color:#da1e28;font-family:'IBM Plex Mono',monospace;opacity:0;transition:opacity 0.2s;}
+#gate.err-show .err{opacity:1;}
+#gate.shake input{animation:shake 0.3s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* Header */
+.site-header{background:var(--header);height:48px;position:sticky;top:0;z-index:50;}
+.site-header nav{height:100%;display:flex;align-items:center;justify-content:between;max-width:1100px;margin:0 auto;padding:0 24px;gap:0;}
+.site-header a{color:#c6c6c6;text-decoration:none;font-size:13px;padding:0 14px;height:48px;display:flex;align-items:center;}
+.site-header a:hover{color:#fff;background:rgba(255,255,255,0.08);}
+.site-header .home{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.05em;margin-right:auto;}
+.theme-btn{background:none;border:none;cursor:pointer;color:#c6c6c6;width:48px;height:48px;display:flex;align-items:center;justify-content:center;}
+.theme-btn:hover{color:#fff;background:rgba(255,255,255,0.16);}
+
+/* Layout */
+#content{display:none;max-width:1100px;margin:0 auto;padding:48px 24px 80px;}
+
+/* Header block */
+.page-header{padding-bottom:32px;border-bottom:1px solid var(--border);margin-bottom:48px;}
+.eyebrow{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:var(--subtle);margin-bottom:10px;}
+.page-header h1{font-size:clamp(28px,4vw,40px);font-weight:300;line-height:1.1;}
+.page-header h1 strong{font-weight:600;}
+.page-header .sub{font-size:15px;color:var(--muted);margin-top:10px;max-width:560px;line-height:1.65;font-style:italic;}
+
+/* Body text */
+.prose{max-width:640px;margin-bottom:40px;}
+.prose p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:16px;}
+.prose p:last-child{margin-bottom:0;}
+.prose strong{color:var(--text);}
+.prose em{font-style:italic;}
+
+/* Triad grid */
+.triad{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:48px;}
+@media(max-width:680px){.triad{grid-template-columns:1fr;}}
+.pillar{padding:24px 20px;background:var(--bg);text-decoration:none;color:inherit;display:block;transition:background 150ms;}
+.pillar:hover{background:var(--tile-hover);}
+.pillar-tag{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px;margin-bottom:14px;display:inline-block;}
+.au .pillar-tag{background:rgba(15,98,254,0.1);color:var(--au);}
+.ru .pillar-tag{background:rgba(0,157,154,0.1);color:var(--ru);}
+.gu .pillar-tag{background:rgba(138,63,252,0.1);color:var(--gu);}
+.pillar h3{font-size:15px;font-weight:500;margin-bottom:8px;color:var(--text);}
+.pillar p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;}
+.pillar .explore{font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--link);}
+
+/* Open question box */
+.oq{background:var(--layer);border:1px solid var(--border);padding:24px 28px;max-width:640px;}
+.oq .oq-label{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:var(--subtle);margin-bottom:10px;}
+.oq p{font-size:15px;color:var(--muted);line-height:1.75;}
+</style>
+</head>
+<body>
+
+<!-- Gate -->
+<div id="gate">
+  <a href="index.html" class="back">← babajideowoyele.github.io</a>
+  <h1>// dsr propaganda</h1>
+  <input type="password" id="pw" placeholder="••••••••" autofocus>
+  <div class="err">incorrect</div>
+</div>
+
+<!-- Site header (visible after unlock) -->
+<header class="site-header" id="site-header" style="display:none;">
+  <nav>
+    <a href="index.html" class="home">BABAJIDE OWOYELE</a>
+    <a href="index.html#research">Research</a>
+    <a href="index.html#publications">Publications</a>
+    <a href="dsr.html">DSR</a>
+    <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode">
+      <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" id="theme-icon">
+        <path d="M16,12a4,4,0,1,1-4,4,4,4,0,0,1,4-4m0-2a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z"/>
+        <rect x="6.22" y="5.64" width="1.86" height="4.22" transform="translate(-3.6 7.15) rotate(-45)"/>
+        <rect x="2" y="15" width="4" height="2"/><rect x="6.22" y="22.14" width="1.86" height="4.22" transform="translate(-14.39 10.98) rotate(-45)"/>
+        <rect x="15" y="26" width="2" height="4"/><rect x="23.93" y="22.14" width="1.86" height="4.22" transform="translate(-10.57 24.86) rotate(-45)"/>
+        <rect x="26" y="15" width="4" height="2"/><rect x="23.93" y="5.64" width="1.86" height="4.22" transform="translate(3.22 21.03) rotate(-45)"/>
+        <rect x="15" y="2" width="2" height="4"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<!-- Content -->
+<div id="content">
+  <div class="page-header">
+    <div class="eyebrow">Design Science Propaganda</div>
+    <h1>Method as <strong>Position</strong></h1>
+    <p class="sub">Every artifact encodes an assumption. The question is whether you name it.</p>
+  </div>
+
+  <div class="prose">
+    <p>
+      Design Science Research is not neutral. Every artifact encodes an assumption about what counts as a problem,
+      whose constraints matter, and what a solution is for. Naming those assumptions explicitly —
+      and building them into the evaluation criteria — is the difference between method and methodology.
+      Most DSR stops at the artifact. I am interested in the assumptions that precede it.
+    </p>
+    <p>
+      In multimodal behavioral science, those assumptions are especially consequential:
+      whose data counts, what gets masked and what gets preserved, whose consent model applies,
+      and whether a pipeline built for European gesture corpora can be extended to Yoruba-speaking dyads
+      without reproducing the epistemic exclusions of the infrastructure it was built on.
+      These are design questions. They have right answers — and they have politics.
+    </p>
+    <p>
+      The <strong>utility triad</strong> is the framework I use to make those assumptions legible:
+      what signal a pipeline can extract (<em>analytic utility</em>),
+      what each design choice costs in signal quality (<em>reflexive utility</em>),
+      and what can be synthesized — and under what conditions that is epistemically and ethically defensible
+      (<em>generative utility</em>). It extends the Maass et al. (2018, JAIS) theory-/data-driven bridge
+      into the governance demands of AI-era behavioral science.
+    </p>
+  </div>
+
+  <!-- Triad -->
+  <div class="triad">
+    <a href="#" class="pillar au">
+      <span class="pillar-tag">AU · Analytic Utility</span>
+      <h3>What can a pipeline extract?</h3>
+      <p>Infrastructure for maximising information yield from multimodal corpora. Theory-driven and data-driven as complements. SMASH and EnvisionBOX are the operational testbed.</p>
+      <span class="explore">Explore AU →</span>
+    </a>
+    <a href="#" class="pillar ru">
+      <span class="pillar-tag">RU · Reflexive Utility</span>
+      <h3>What does masking cost?</h3>
+      <p>Making de-identification costs legible as a principled design choice, not a binary compliance toggle. MaskBench operationalises this: 88–95% pose quality under blur.</p>
+      <span class="explore">Explore RU →</span>
+    </a>
+    <a href="#" class="pillar gu">
+      <span class="pillar-tag">GU · Generative Utility</span>
+      <h3>What can be synthesized — and should it?</h3>
+      <p>Synthetic corpora, cross-modal embeddings, governance at the frontier. Highest-opportunity and highest-risk tier. JEGAL and the LEGO collaboration are the live substrate.</p>
+      <span class="explore">Explore GU →</span>
+    </a>
+  </div>
+
+  <div class="oq">
+    <div class="oq-label">The open question</div>
+    <p>
+      What is the shape of the tradeoff space between analytic power, privacy, and synthesis —
+      and can it be formally characterised across research systems that did not build the infrastructure?
+      That is what the next phase of this programme is for.
+      The tools were built in Western labs on Western data.
+      The unknown unknown is what they assume about the world they were not designed to describe.
+    </p>
+  </div>
+</div>
+
+<script>
+const KEY = 'dsr_unlocked';
+
+function unlock(){
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('site-header').style.display = '';
+  document.getElementById('content').style.display = 'block';
+  localStorage.setItem(KEY, '1');
+}
+
+if(localStorage.getItem(KEY) === '1'){ unlock(); }
+
+const saved = localStorage.getItem('theme');
+if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+else if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+  document.documentElement.setAttribute('data-theme', 'dark');
+}
+
+document.getElementById('pw').addEventListener('keydown', function(e){
+  if(e.key !== 'Enter') return;
+  if(btoa(this.value.trim()) === btoa('synapsis26')){
+    unlock();
+  } else {
+    const gate = document.getElementById('gate');
+    gate.classList.add('err-show', 'shake');
+    this.value = '';
+    setTimeout(() => gate.classList.remove('shake'), 400);
+  }
+});
+
+document.getElementById('theme-toggle').addEventListener('click', function(){
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+</script>
+</body>
+</html>

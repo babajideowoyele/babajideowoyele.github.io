@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Research Agenda</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0f0f; --layer:#161616; --layer2:#1e1e1e; --border:#2a2a2a;
+  --text:#f4f4f4; --muted:#8d8d8d; --subtle:#525252;
+  --au:#0f62fe; --ru:#009d9a; --gu:#8a3ffc;
+  --gold:#f1c21b; --danger:#da1e28; --green:#24a148;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh;}
+
+/* Gate */
+#gate{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:24px;}
+#gate h1{font-size:18px;font-weight:300;color:var(--muted);letter-spacing:0.1em;font-family:'IBM Plex Mono',monospace;}
+#gate input{background:var(--layer2);border:1px solid var(--border);color:var(--text);padding:12px 16px;font-size:16px;font-family:'IBM Plex Mono',monospace;width:240px;text-align:center;letter-spacing:0.2em;outline:none;}
+#gate input:focus{border-color:var(--muted);}
+#gate .err{font-size:12px;color:var(--danger);font-family:'IBM Plex Mono',monospace;opacity:0;}
+#gate.shake input{animation:shake 0.3s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* Layout */
+#content{display:none;max-width:1100px;margin:0 auto;padding:40px 24px 80px;}
+
+/* Header */
+.agenda-header{padding:48px 0 32px;border-bottom:1px solid var(--border);margin-bottom:48px;}
+.agenda-header .eyebrow{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:var(--subtle);margin-bottom:12px;}
+.agenda-header h1{font-size:clamp(28px,4vw,44px);font-weight:300;line-height:1.1;color:var(--text);}
+.agenda-header h1 strong{font-weight:600;}
+.agenda-header .tagline{font-size:14px;color:var(--muted);margin-top:12px;font-style:italic;max-width:560px;}
+
+/* Section */
+.section{margin-bottom:56px;}
+.section-label{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:var(--subtle);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:1px;}
+.phase{display:grid;grid-template-columns:180px 1fr;gap:0;border:1px solid var(--border);margin-bottom:2px;}
+.phase-meta{padding:20px 16px;background:var(--layer);border-right:1px solid var(--border);}
+.phase-meta .years{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--muted);margin-bottom:4px;}
+.phase-meta .phase-name{font-size:13px;font-weight:500;color:var(--text);}
+.phase-meta .role{font-size:11px;color:var(--subtle);margin-top:4px;line-height:1.4;}
+.phase-body{padding:20px 24px;background:var(--layer2);}
+.phase-body h3{font-size:14px;font-weight:500;margin-bottom:8px;}
+.phase-body p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:8px;}
+.phase-body p:last-child{margin-bottom:0;}
+.phase.current{border-color:#444;}
+.phase.current .phase-meta{border-right-color:#444;}
+.phase.current .phase-name{color:var(--gold);}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+@media(max-width:700px){.pillars{grid-template-columns:1fr;}}
+.pillar{padding:24px 20px;background:var(--layer2);}
+.pillar-tag{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px;margin-bottom:12px;display:inline-block;}
+.pillar.au .pillar-tag{background:rgba(15,98,254,0.15);color:#78a9ff;}
+.pillar.ru .pillar-tag{background:rgba(0,157,154,0.15);color:#3ddbd9;}
+.pillar.gu .pillar-tag{background:rgba(138,63,252,0.15);color:#d4bbff;}
+.pillar h3{font-size:15px;font-weight:500;margin-bottom:8px;}
+.pillar p{font-size:12px;color:var(--muted);line-height:1.7;}
+.pillar ul{list-style:none;margin-top:8px;}
+.pillar ul li{font-size:12px;color:var(--subtle);padding:3px 0;border-bottom:1px solid var(--border);}
+.pillar ul li:last-child{border-bottom:none;}
+.pillar ul li::before{content:"→ ";color:var(--subtle);}
+
+/* Funding ladder */
+.ladder{display:flex;flex-direction:column;gap:1px;}
+.rung{display:grid;grid-template-columns:200px 60px 1fr;gap:0;border:1px solid var(--border);margin-bottom:2px;align-items:stretch;}
+.rung-funder{padding:14px 16px;background:var(--layer);border-right:1px solid var(--border);font-size:12px;color:var(--muted);}
+.rung-funder strong{display:block;font-size:13px;color:var(--text);font-weight:500;margin-bottom:2px;}
+.rung-status{display:flex;align-items:center;justify-content:center;background:var(--layer);border-right:1px solid var(--border);}
+.dot{width:8px;height:8px;border-radius:50%;}
+.dot.confirmed{background:var(--green);}
+.dot.submitted{background:var(--gold);}
+.dot.prep{background:var(--subtle);}
+.dot.watch{background:var(--au);opacity:0.5;}
+.rung-body{padding:14px 20px;background:var(--layer2);font-size:12px;color:var(--muted);}
+.rung-body strong{color:var(--text);font-size:13px;}
+
+/* Geo axis */
+.geo{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:16px;}
+.geo-node{padding:20px;background:var(--layer2);text-align:center;}
+.geo-node .flag{font-size:28px;margin-bottom:8px;}
+.geo-node h4{font-size:13px;font-weight:500;margin-bottom:6px;}
+.geo-node p{font-size:11px;color:var(--muted);line-height:1.6;}
+.geo-arrow{display:flex;align-items:center;justify-content:center;background:var(--layer);color:var(--subtle);font-size:20px;}
+
+/* Notes */
+.note{background:var(--layer);border-left:3px solid var(--subtle);padding:16px 20px;margin-top:16px;font-size:13px;color:var(--muted);line-height:1.7;}
+.note strong{color:var(--text);}
+
+/* Legend */
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);}
+</style>
+</head>
+<body>
+
+<!-- Password gate -->
+<div id="gate">
+  <h1>// agenda</h1>
+  <input type="password" id="pw" placeholder="••••••••" autofocus>
+  <div class="err" id="err">incorrect</div>
+</div>
+
+<!-- Content -->
+<div id="content">
+
+  <div class="agenda-header">
+    <div class="eyebrow">Private · Research Trajectory</div>
+    <h1>Postdoc → <strong>Full Professor</strong></h1>
+    <p class="tagline">Multimodal infrastructure for human communication research — from the Western lab to the world it doesn't yet serve.</p>
+  </div>
+
+  <!-- PHASE TIMELINE -->
+  <div class="section">
+    <div class="section-label">Career phases</div>
+    <div class="timeline">
+
+      <div class="phase current">
+        <div class="phase-meta">
+          <div class="years">2025 – 2027</div>
+          <div class="phase-name">Postdoc</div>
+          <div class="role">Radboud University CLS<br>+ HPI Potsdam AIIS</div>
+        </div>
+        <div class="phase-body">
+          <h3>Build the infrastructure, publish the framework</h3>
+          <p>Deliver SYNAPSIS (NWO TDCC-SSH, €249,981) as a working national infrastructure across 7 Dutch institutions. Finalise MaskingOPS (BRM, in press), SMASH v2 preprint, and utility triad paper. MaskBench operationalised as RSSF headline. SMASHFIRE + REDES confirmed. Establish the NL–DE axis through HPI affiliation and the LEGO collaboration.</p>
+          <p>PhD defense October 2026. Apply for Walter Benjamin immediately after.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-meta">
+          <div class="years">2027 – 2029</div>
+          <div class="phase-name">Walter Benjamin / W1</div>
+          <div class="role">German institution<br>(Leuphana or HPI)</div>
+        </div>
+        <div class="phase-body">
+          <h3>Establish independent research line in Germany</h3>
+          <p>DFG Walter Benjamin (2-year fellowship, open submission) or W1 Juniorprofessorship at Leuphana. Either path puts German institutional base in place. Run NWO Veni SSH (2027 round) in parallel as the Dutch counterpart. First forays into non-Western deployment: pilot at a Nigerian institution, building on the LEGO proposal's Nigeria extension plan.</p>
+          <p>Key deliverables: Emmy Noether draft proposal (watch for next AI Methods call ~2027); VW NEXT Dual Use (Oct 2026) and VW Pioneering Research (Aug 2026 short proposal — German affiliation required).</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-meta">
+          <div class="years">2029 – 2035</div>
+          <div class="phase-name">Emmy Noether Group</div>
+          <div class="role">German institution<br>Independent group leader</div>
+        </div>
+        <div class="phase-body">
+          <h3>Scale the utility triad into a research programme</h3>
+          <p>Lead a 6-year Emmy Noether group with the utility triad as the organizing framework: AU pillar (SMASH v3, cross-corpora analysis at scale), RU pillar (MaskBench international benchmark, community consent models for West Africa), GU pillar (synthetic corpora governance, JEGAL at scale). NL partners (Radboud, Tilburg) as key collaborators and co-applicants.</p>
+          <p>VW Pioneering Research (up to €1.3M) as the flagship parallel application — the "unknown unknown" is what the tradeoff space looks like outside the Western system that built the infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-meta">
+          <div class="years">2035+</div>
+          <div class="phase-name">Associate → Full Professor</div>
+          <div class="role">German / international<br>Chair holder</div>
+        </div>
+        <div class="phase-body">
+          <h3>Chair + international programme</h3>
+          <p>Full professorship in multimodal AI, computational social science, or responsible AI methods. ERC Consolidator / Advanced Grant as the European flagship. Sustained NL–DE–NG research axis with field sites in West Africa. Chair holders at collaborating institutions (Wim Pouw → Tilburg; Gerard de Melo → HPI). Build the infrastructure into a field — the way ELAN became a field standard, SMASH becomes the multimodal analysis standard for SSH with non-Western coverage built in by design.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- THREE PILLARS -->
+  <div class="section">
+    <div class="section-label">The three pillars — utility triad as research programme</div>
+    <div class="pillars">
+      <div class="pillar au">
+        <span class="pillar-tag">AU · Analytic Utility</span>
+        <h3>What signal can a pipeline extract?</h3>
+        <p>Infrastructure for maximising the information yield of multimodal corpora. Theory-driven and data-driven knowledge creation as complements, not opposites.</p>
+        <ul>
+          <li>SMASH v2 (canonical event log architecture)</li>
+          <li>EnvisionBOX gesture classification challenge</li>
+          <li>Cross-corpus comparison at scale</li>
+          <li>Non-Western corpora: Yoruba, Hausa, Igbo speech</li>
+        </ul>
+      </div>
+      <div class="pillar ru">
+        <span class="pillar-tag">RU · Reflexive Utility</span>
+        <h3>What does masking cost?</h3>
+        <p>Making de-identification costs legible. Privacy as a principled design choice, not a binary compliance toggle. Community consent models for non-Western field sites.</p>
+        <ul>
+          <li>MaskBench (88–95% pose quality under blur)</li>
+          <li>REDES Surveillance Sandbox</li>
+          <li>SYNAPSIS provenance schema</li>
+          <li>Community-based consent in Nigerian contexts</li>
+        </ul>
+      </div>
+      <div class="pillar gu">
+        <span class="pillar-tag">GU · Generative Utility</span>
+        <h3>What can be synthesized — and should it?</h3>
+        <p>Synthetic corpora, model training, cross-modal generation. Highest governance demand. Especially urgent for underrepresented populations where real data is scarce and synthetic data could compensate — or harm.</p>
+        <ul>
+          <li>JEGAL (cross-modal embedding substrate)</li>
+          <li>LEGO: child–AI coupling, on-device small LLM</li>
+          <li>SLlama: compact models for low-resource settings</li>
+          <li>Deepfake governance for non-Western contexts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNDING LADDER -->
+  <div class="section">
+    <div class="section-label">Funding ladder</div>
+    <div class="legend">
+      <div class="legend-item"><div class="dot confirmed"></div> confirmed</div>
+      <div class="legend-item"><div class="dot submitted"></div> submitted / in prep</div>
+      <div class="legend-item"><div class="dot prep"></div> planned</div>
+      <div class="legend-item"><div class="dot watch"></div> watch / next round</div>
+    </div>
+    <div class="ladder">
+      <div class="rung"><div class="rung-funder"><strong>NWO TDCC-SSH</strong>SYNAPSIS · €249,981</div><div class="rung-status"><div class="dot confirmed"></div></div><div class="rung-body"><strong>2025–2027</strong> · PI/postdoc lead · 7-institution NL consortium · foundation of the whole programme</div></div>
+      <div class="rung"><div class="rung-funder"><strong>NWO Open XS</strong>SMASH · €50,000</div><div class="rung-status"><div class="dot confirmed"></div></div><div class="rung-body"><strong>2024–2026</strong> · Co-applicant (PI: Wim Pouw) · multimodal analytics infrastructure</div></div>
+      <div class="rung"><div class="rung-funder"><strong>NWO Impact Explorer</strong>SMASHFIRE · €30,000</div><div class="rung-status"><div class="dot confirmed"></div></div><div class="rung-body"><strong>2026</strong> · Co-PI · masking in safety-critical contexts</div></div>
+      <div class="rung"><div class="rung-funder"><strong>Tilburg TSHD</strong>REDES · €20,000</div><div class="rung-status"><div class="dot confirmed"></div></div><div class="rung-body"><strong>2026</strong> · Co-PI · surveillance sandbox, community standards</div></div>
+      <div class="rung"><div class="rung-funder"><strong>Donders Institute</strong>Cross-Centre · €10,000</div><div class="rung-status"><div class="dot confirmed"></div></div><div class="rung-body"><strong>2026</strong> · Co-PI (Wim Pouw) · EnvisionBOX object annotator</div></div>
+      <div class="rung"><div class="rung-funder"><strong>LEGO Foundation</strong>"Third in the Room" · $300K</div><div class="rung-status"><div class="dot submitted"></div></div><div class="rung-body"><strong>2026 (in prep)</strong> · Co-investigator (Fellow: Lisette de Jonge-Hoekstra) · child–AI coupling, Nigeria extension named as scalability site</div></div>
+      <div class="rung"><div class="rung-funder"><strong>Open Science NL</strong>RSSF 2026</div><div class="rung-status"><div class="dot submitted"></div></div><div class="rung-body"><strong>Submitted Jun 2026</strong> · PI · MaskBench sustainability · await shortlist</div></div>
+      <div class="rung"><div class="rung-funder"><strong>VW Foundation</strong>NEXT Dual Use</div><div class="rung-status"><div class="dot submitted"></div></div><div class="rung-body"><strong>Deadline Oct 2026</strong> · Co-PI (PI: Gerard de Melo, Co-PI: Wim Pouw) · dual-use cartography · German institution required ✓ (HPI)</div></div>
+      <div class="rung"><div class="rung-funder"><strong>NWO M SSH</strong>SMASHFIRE scale-up</div><div class="rung-status"><div class="dot prep"></div></div><div class="rung-body"><strong>In prep</strong> · Co-PI · larger follow-on to SMASHFIRE</div></div>
+      <div class="rung"><div class="rung-funder"><strong>NWO Veni SSH</strong>Independent · ~€320K</div><div class="rung-status"><div class="dot prep"></div></div><div class="rung-body"><strong>2027 round</strong> · PI · independent NL grant · utility triad as framework</div></div>
+      <div class="rung"><div class="rung-funder"><strong>DFG Walter Benjamin</strong>Fellowship · 2yr</div><div class="rung-status"><div class="dot prep"></div></div><div class="rung-body"><strong>Post-PhD defense (after Oct 2026)</strong> · PI · entry into German funding system · open submission · host: HPI or Leuphana</div></div>
+      <div class="rung"><div class="rung-funder"><strong>VW Pioneering Research</strong>Up to €1.3M · 3–5yr</div><div class="rung-status"><div class="dot prep"></div></div><div class="rung-body"><strong>Short proposals Aug 2026</strong> · PI · "unknown unknown": utility tradeoff space outside Western research system · German affiliation required ✓</div></div>
+      <div class="rung"><div class="rung-funder"><strong>DFG Emmy Noether</strong>Group leader · 6yr</div><div class="rung-status"><div class="dot watch"></div></div><div class="rung-body"><strong>Watch: AI Methods call next round ~2027</strong> · PI · 6-year independent group · via HPI (Gerard) or Leuphana · leads to professorship eligibility</div></div>
+      <div class="rung"><div class="rung-funder"><strong>ERC Consolidator</strong>Up to €2M · 5yr</div><div class="rung-status"><div class="dot watch"></div></div><div class="rung-body"><strong>~2032+</strong> · PI · European flagship · requires 7–12yrs post-PhD · natural follow-on to Emmy Noether group</div></div>
+    </div>
+  </div>
+
+  <!-- GEO AXIS -->
+  <div class="section">
+    <div class="section-label">Geographic axis — NL → DE → NG</div>
+    <div class="geo">
+      <div class="geo-node">
+        <div class="flag">🇳🇱</div>
+        <h4>Netherlands</h4>
+        <p>Radboud (SYNAPSIS, CLS)<br>Tilburg (Wim Pouw, SMASHFIRE)<br>VU, UvA, RUG, SURF, DANS<br><em>International collaborative funding base</em></p>
+      </div>
+      <div class="geo-arrow">→</div>
+      <div class="geo-node">
+        <div class="flag">🇩🇪</div>
+        <h4>Germany</h4>
+        <p>HPI Potsdam (Gerard de Melo, AIIS, 2019–)<br>Leuphana (W1 target)<br><em>DFG / VW funding base<br>Emmy Noether group home</em></p>
+      </div>
+      <div class="geo-arrow">→</div>
+      <div class="geo-node">
+        <div class="flag">🇳🇬</div>
+        <h4>Nigeria</h4>
+        <p>Field sites for non-Western multimodal research<br>Yoruba / Hausa / Igbo corpora<br>Community consent models<br><em>LEGO scale-up · VW Pioneering frontier</em></p>
+      </div>
+    </div>
+    <div class="note">
+      <strong>The positionality argument:</strong> As a Nigerian researcher building infrastructure that currently fails Nigerian data — 88% of African languages absent from modern language technology — this is not "studying underrepresented populations from outside." It is building tools that serve your own linguistic and cultural context. That is a distinctive scholarly position the VW Pioneering Research programme is designed to fund: genuinely unknown territory that only this researcher is positioned to open.
+    </div>
+  </div>
+
+  <!-- COLLABORATORS -->
+  <div class="section">
+    <div class="section-label">Core collaboration network</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);">
+      <div style="padding:16px 20px;background:var(--layer2);">
+        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">Wim Pouw · Tilburg / Donders</div>
+        <div style="font-size:12px;color:var(--muted);">SMASH, SMASHFIRE, REDES, LEGO, MaskBench, EnvisionBOX — the closest scientific partner across all pillars</div>
+      </div>
+      <div style="padding:16px 20px;background:var(--layer2);">
+        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">Gerard de Melo · HPI Potsdam</div>
+        <div style="font-size:12px;color:var(--muted);">AIIS, JEGAL, SLlama, VW NEXT — German institutional anchor; Emmy Noether pathway host; AI and knowledge representation</div>
+      </div>
+      <div style="padding:16px 20px;background:var(--layer2);">
+        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">Mark Dingemanse · Radboud CLS</div>
+        <div style="font-size:12px;color:var(--muted);">SYNAPSIS PI; conversation analysis and multimodal interaction; NL institutional home</div>
+      </div>
+      <div style="padding:16px 20px;background:var(--layer2);">
+        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">Lisette de Jonge-Hoekstra · RUG</div>
+        <div style="font-size:12px;color:var(--muted);">LEGO Fellow; child–adult coupling; developmental language disorder; SeGa-Com; NL–NG extension</div>
+      </div>
+      <div style="padding:16px 20px;background:var(--layer2);">
+        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">Jonathan Edelman · HPI</div>
+        <div style="font-size:12px;color:var(--muted);">PhD co-promotor; HPI–Stanford DTRP; design science; digital health</div>
+      </div>
+      <div style="padding:16px 20px;background:var(--layer2);">
+        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">Derk Loorbach · EUR DRIFT</div>
+        <div style="font-size:12px;color:var(--muted);">PhD promotor; sustainability transitions; sociomaterial infrastructure; systems thinking</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const KEY = 'agenda_unlocked';
+const HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c'; // sha1 of 'admin' — change this
+
+function sha1(str){
+  // simple check via stored key for lightweight gate
+  return btoa(str);
+}
+
+function unlock(){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('content').style.display='block';
+  localStorage.setItem(KEY,'1');
+}
+
+if(localStorage.getItem(KEY)==='1'){unlock();}
+
+document.getElementById('pw').addEventListener('keydown', function(e){
+  if(e.key==='Enter'){
+    const val = this.value.trim();
+    // store password as btoa — set your own below
+    if(btoa(val) === btoa('synapsis26')){
+      unlock();
+    } else {
+      document.getElementById('err').style.opacity='1';
+      document.getElementById('gate').classList.add('shake');
+      this.value='';
+      setTimeout(()=>{
+        document.getElementById('gate').classList.remove('shake');
+      },400);
+    }
+  }
+});
+</script>
+</body>
+</html>
