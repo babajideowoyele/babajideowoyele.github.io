@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Grant Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--layer:#161616;--layer2:#1e1e1e;--border:#2a2a2a;--text:#f4f4f4;--muted:#8d8d8d;--subtle:#525252;--green:#24a148;--gold:#f1c21b;--blue:#0f62fe;--teal:#009d9a;--danger:#da1e28;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh;}
+
+#gate{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:20px;}
+#gate a.back{position:absolute;top:12px;left:16px;font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);text-decoration:none;}
+#gate h1{font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);letter-spacing:0.15em;}
+#gate input{background:var(--layer2);border:1px solid var(--border);color:var(--text);padding:11px 16px;font-size:15px;font-family:'IBM Plex Mono',monospace;width:220px;text-align:center;letter-spacing:0.2em;outline:none;}
+#gate input:focus{border-color:var(--subtle);}
+#gate .err{font-size:11px;color:var(--danger);font-family:'IBM Plex Mono',monospace;opacity:0;}
+#gate.shake input{animation:shake 0.3s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+#content{display:none;max-width:1100px;margin:0 auto;padding:40px 24px 80px;}
+
+.nav{display:flex;gap:20px;margin-bottom:48px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.nav a{font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);text-decoration:none;}
+.nav a:hover{color:var(--text);}
+
+.page-header{margin-bottom:40px;}
+.eyebrow{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:var(--subtle);margin-bottom:8px;}
+h1{font-size:clamp(22px,3vw,34px);font-weight:300;line-height:1.15;}
+h1 strong{font-weight:600;}
+
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:32px;}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot.confirmed{background:var(--green);}
+.dot.submitted{background:var(--gold);}
+.dot.prep{background:var(--blue);opacity:0.6;}
+.dot.watch{background:var(--teal);opacity:0.6;}
+.dot.concluded{background:var(--subtle);}
+
+.col-header{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:var(--subtle);padding:8px 0 12px;border-bottom:1px solid var(--border);margin-bottom:12px;}
+
+.columns{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:800px){.columns{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.columns{grid-template-columns:1fr;}}
+
+.card{background:var(--layer);border:1px solid var(--border);padding:14px 16px;margin-bottom:10px;}
+.card-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.card-dot{flex-shrink:0;margin-top:5px;}
+.card-name{font-size:13px;font-weight:500;line-height:1.3;}
+.card-funder{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--subtle);margin-bottom:6px;}
+.card-amount{font-size:12px;color:var(--muted);margin-bottom:4px;}
+.card-role{font-size:11px;color:var(--subtle);}
+.card-deadline{font-size:11px;font-family:'IBM Plex Mono',monospace;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
+.card-deadline.urgent{color:var(--gold);}
+.card-deadline.normal{color:var(--subtle);}
+.card-action{font-size:11px;color:var(--teal);margin-top:4px;}
+
+.total-bar{background:var(--layer);border:1px solid var(--border);padding:16px 20px;margin-top:32px;display:flex;gap:32px;flex-wrap:wrap;}
+.total-item .tl{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:var(--subtle);margin-bottom:4px;}
+.total-item .tv{font-size:16px;font-weight:500;}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <a href="agenda.html" class="back">← agenda</a>
+  <h1>// grant pipeline</h1>
+  <input type="password" id="pw" placeholder="••••••••" autofocus>
+  <div class="err" id="err">incorrect</div>
+</div>
+
+<div id="content">
+  <nav class="nav">
+    <a href="dsr.html">← dsr</a>
+    <a href="agenda.html">trajectory</a>
+    <a href="vw-pioneering.html">vw pioneering</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="eyebrow">Private · Funding Strategy</div>
+    <h1>Grant <strong>Pipeline</strong></h1>
+  </div>
+
+  <div class="legend">
+    <div class="leg"><div class="dot confirmed"></div>confirmed</div>
+    <div class="leg"><div class="dot submitted"></div>submitted / shortlist</div>
+    <div class="leg"><div class="dot prep"></div>in preparation</div>
+    <div class="leg"><div class="dot watch"></div>watch / next round</div>
+    <div class="leg"><div class="dot concluded"></div>concluded</div>
+  </div>
+
+  <div class="columns">
+    <!-- CONFIRMED -->
+    <div>
+      <div class="col-header">Confirmed</div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot confirmed card-dot"></div><div class="card-name">SYNAPSIS</div></div>
+        <div class="card-funder">NWO TDCC-SSH</div>
+        <div class="card-amount">€249,981 · 2025–2027</div>
+        <div class="card-role">PI / postdoc lead</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot confirmed card-dot"></div><div class="card-name">SMASHFIRE</div></div>
+        <div class="card-funder">NWO Impact Explorer</div>
+        <div class="card-amount">€30,000 · 2026</div>
+        <div class="card-role">Co-PI (w. Wim Pouw)</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot confirmed card-dot"></div><div class="card-name">REDES</div></div>
+        <div class="card-funder">Tilburg TSHD</div>
+        <div class="card-amount">€20,000 · 2026</div>
+        <div class="card-role">Co-PI (w. Wim Pouw)</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot confirmed card-dot"></div><div class="card-name">EnvisionBOX Object Annotator</div></div>
+        <div class="card-funder">Donders Cross-Centre</div>
+        <div class="card-amount">€10,000 · 2026</div>
+        <div class="card-role">Co-PI (w. Wim Pouw)</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot concluded card-dot"></div><div class="card-name">SMASH</div></div>
+        <div class="card-funder">NWO Open XS</div>
+        <div class="card-amount">€50,000 · 2024–Jun 2026</div>
+        <div class="card-role">Co-applicant (PI: W. Pouw)</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot concluded card-dot"></div><div class="card-name">HPI–Stanford DTRP</div></div>
+        <div class="card-funder">HPI / Stanford</div>
+        <div class="card-amount">USD 300K · 2020–2022</div>
+        <div class="card-role">Co-applicant (PI: J. Edelman)</div>
+      </div>
+    </div>
+
+    <!-- SUBMITTED -->
+    <div>
+      <div class="col-header">Submitted / Pending</div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot submitted card-dot"></div><div class="card-name">RSSF 2026 (MaskBench)</div></div>
+        <div class="card-funder">Open Science NL / eScience</div>
+        <div class="card-amount">amount TBD</div>
+        <div class="card-role">PI</div>
+        <div class="card-deadline normal">Submitted Jun 2026 · await shortlist</div>
+        <div class="card-action">→ watch for shortlist notification</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot submitted card-dot"></div><div class="card-name">Leuphana W1</div></div>
+        <div class="card-funder">Leuphana University</div>
+        <div class="card-amount">Junior Professorship</div>
+        <div class="card-role">Applicant</div>
+        <div class="card-deadline urgent">Deadline: 7 Jul 2026</div>
+        <div class="card-action">→ submit by 14:00 CET · beko@leuphana.de</div>
+      </div>
+    </div>
+
+    <!-- IN PREPARATION -->
+    <div>
+      <div class="col-header">In Preparation</div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot prep card-dot"></div><div class="card-name">VW Pioneering Research</div></div>
+        <div class="card-funder">Volkswagen Foundation</div>
+        <div class="card-amount">up to €1.3M · 3–5 yr</div>
+        <div class="card-role">PI (German affil. required)</div>
+        <div class="card-deadline urgent">Short proposal: 27 Aug 2026</div>
+        <div class="card-action">→ <a href="vw-pioneering.html" style="color:var(--teal);text-decoration:none;">open scratchpad</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot prep card-dot"></div><div class="card-name">VW NEXT — Dual Use Cartography</div></div>
+        <div class="card-funder">Volkswagen Foundation</div>
+        <div class="card-amount">amount TBD</div>
+        <div class="card-role">Co-PI (PI: G. de Melo; w. W. Pouw)</div>
+        <div class="card-deadline urgent">Deadline: 6 Oct 2026</div>
+        <div class="card-action">→ repo: vw_dualuse (private)</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot prep card-dot"></div><div class="card-name">LEGO Foundation "Third in the Room"</div></div>
+        <div class="card-funder">LEGO Foundation / SSRC</div>
+        <div class="card-amount">USD 300K</div>
+        <div class="card-role">Co-I (Fellow: L. de Jonge-Hoekstra)</div>
+        <div class="card-deadline normal">In prep · deadline TBD</div>
+        <div class="card-action">→ Nigeria extension named as scale-up</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot prep card-dot"></div><div class="card-name">NWO M SSH — SMASHFIRE scale-up</div></div>
+        <div class="card-funder">NWO SSH domain</div>
+        <div class="card-amount">~€300–500K (est.)</div>
+        <div class="card-role">Co-PI</div>
+        <div class="card-deadline normal">In prep · round TBD</div>
+      </div>
+    </div>
+
+    <!-- WATCH -->
+    <div>
+      <div class="col-header">Watch / Planned</div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot watch card-dot"></div><div class="card-name">NWO Veni SSH</div></div>
+        <div class="card-funder">NWO</div>
+        <div class="card-amount">~€320K · 3 yr</div>
+        <div class="card-role">PI</div>
+        <div class="card-deadline normal">2027 round</div>
+        <div class="card-action">→ utility triad as framework</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot watch card-dot"></div><div class="card-name">DFG Walter Benjamin</div></div>
+        <div class="card-funder">DFG</div>
+        <div class="card-amount">2-yr fellowship</div>
+        <div class="card-role">PI</div>
+        <div class="card-deadline normal">Post-defense (after Oct 2026) · open submission</div>
+        <div class="card-action">→ host: HPI or Leuphana</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot watch card-dot"></div><div class="card-name">DFG Emmy Noether — AI Methods</div></div>
+        <div class="card-funder">DFG</div>
+        <div class="card-amount">6-yr group leader</div>
+        <div class="card-role">PI</div>
+        <div class="card-deadline normal">Next call ~2027 · contact: ai-initiative@dfg.de</div>
+        <div class="card-action">→ via HPI (Gerard) or Leuphana</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><div class="dot watch card-dot"></div><div class="card-name">ERC Consolidator</div></div>
+        <div class="card-funder">European Research Council</div>
+        <div class="card-amount">up to €2M · 5 yr</div>
+        <div class="card-role">PI</div>
+        <div class="card-deadline normal">~2032+ (7–12 yrs post-PhD)</div>
+        <div class="card-action">→ follow-on to Emmy Noether group</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="total-bar">
+    <div class="total-item">
+      <div class="tl">Confirmed (EUR)</div>
+      <div class="tv">€359,981</div>
+    </div>
+    <div class="total-item">
+      <div class="tl">Confirmed (incl. HPI–Stanford)</div>
+      <div class="tv">€359,981 + USD 300K</div>
+    </div>
+    <div class="total-item">
+      <div class="tl">Pipeline (if successful)</div>
+      <div class="tv">+€1.3M VW + €320K Veni + ...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const KEY = 'pipeline_unlocked';
+function unlock(){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('content').style.display='block';
+  localStorage.setItem(KEY,'1');
+}
+if(localStorage.getItem(KEY)==='1'){unlock();}
+document.getElementById('pw').addEventListener('keydown',function(e){
+  if(e.key!=='Enter')return;
+  if(btoa(this.value.trim())===btoa('synapsis26')){unlock();}
+  else{
+    document.getElementById('err').style.opacity='1';
+    document.getElementById('gate').classList.add('shake');
+    this.value='';
+    setTimeout(()=>document.getElementById('gate').classList.remove('shake'),400);
+  }
+});
+</script>
+</body>
+</html>
